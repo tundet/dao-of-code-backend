@@ -1,21 +1,45 @@
-# Lumen PHP Framework
+# Dao of Code API
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+## Authentication
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Authentication is required for all routes except the following:
 
-## Official Documentation
+* /signin
+* /signup
 
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
+Users can authenticate by sending their session token in the `x-access-token`
+header.
 
-## Security Vulnerabilities
+## Supported URIs
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+### Users
 
-## License
+**GET:**
 
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+* /users - Get all users.
+* /users/{id/username} - Get all data of a user.
+
+**POST:**
+
+* /users - Create a new user.
+    Required fields:
+    * username
+    * password
+    * email
+
+### Authentication
+
+**POST:**
+
+* /signin - Sign in to the application.
+
+    Required fields:
+    * username
+    * password
+
+If the sign-in attempt is successful, a new session token will be generated
+and sent back in the `api_token` attribute of the JSON response.
+
+* /signout - Sign out of the application.
+
+    Required fields:none
