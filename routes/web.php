@@ -16,7 +16,7 @@ $app->get('/', function () use ($app) {
 });
 
 /**
- * Unauthenticated routes.
+ * Routes without authentication.
  */
 $app->post('signin', 'AuthController@signin');
 $app->post('signup', 'AuthController@signup');

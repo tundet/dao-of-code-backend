@@ -30,4 +30,21 @@ class UsersController extends Controller
             return User::where("username", $identifier)->first();
         }
     }
+
+    public function post(Request $request)
+    {
+        try {
+            $user = new User();
+
+            $user->username = $request->input('username');
+            $user->password = Hash::make($request->input('password'));
+            $user->email = $request->input('email');
+
+            $user->save();
+
+            return response()->json(['message' => 'User ' . $user->username . ' has been created.'], 200);
+        } catch (\Exception $ex) {
+            return response()->json(['message' => 'Unable to create a new user.'], 500);
+        }
+    }
 }
