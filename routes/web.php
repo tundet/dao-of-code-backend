@@ -18,8 +18,14 @@ $app->get('/', function () use ($app) {
 /**
  * User routes
  */
-$app->get('users', 'UsersController@all');
-$app->get('users/{identifier}', 'UsersController@get');
-$app->post('users', 'UsersController@post');
-$app->put('users/{id}', 'UsersController@put');
-$app->delete('users/{id}', 'UsersController@delete');
+$app->group(['middleware' => 'auth'], function () use ($app) {
+    $app->get('users', 'UsersController@all');
+    $app->get('users/{identifier}', 'UsersController@get');
+    $app->post('users', 'UsersController@post');
+    $app->put('users/{id}', 'UsersController@put');
+    $app->delete('users/{id}', 'UsersController@delete');
+
+    $app->post('signin', 'UsersController@signin');
+    $app->post('signout', 'UsersController@signout');
+    $app->post('signup', 'UsersController@signup');
+});
