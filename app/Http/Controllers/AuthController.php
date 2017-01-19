@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -13,6 +11,12 @@ class AuthController extends Controller
     {
         $user = User::where('username', $request->input('username'))->first();
 
+        // If username was not found.
+        if ($user === null) {
+            return response()->json(['message' => 'Signin attempt failed.'], 401);
+        }
+
+        // If signin is successful.
         if (password_verify($request->input('password'), $user->password)) {
             $response = [
                 'message' => 'You have been signed in.',
@@ -25,16 +29,21 @@ class AuthController extends Controller
             return response()->json($response, 200);
         }
 
-        $response = [
-            'message' => 'Signin attempt failed.'
-        ];
-
-        return response()->json($response, 401);
+        return response()->json(['message' => 'Signin attempt failed.'], 401);
     }
 
     public function signout(Request $request)
     {
+        $user = User::where('api_token', $request->header('x-access-token'))->first();
 
+        $user->api_token = null;
+        $user->save();
+
+        $response = [
+            'message' => 'You have been signed out.'
+        ];
+
+        return response()->json($response, 200);
     }
 
     public function signup(Request $request)
