@@ -16,7 +16,13 @@ $app->get('/', function () use ($app) {
 });
 
 /**
- * User routes
+ * Unauthenticated routes.
+ */
+$app->post('signin', 'AuthController@signin');
+$app->post('signup', 'AuthController@signup');
+
+/**
+ * User routes.
  */
 $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('users', 'UsersController@all');
@@ -25,7 +31,8 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->put('users/{id}', 'UsersController@put');
     $app->delete('users/{id}', 'UsersController@delete');
 
-    $app->post('signin', 'UsersController@signin');
-    $app->post('signout', 'UsersController@signout');
-    $app->post('signup', 'UsersController@signup');
+    /**
+     * Authentication routes.
+     */
+    $app->post('signout', 'AuthController@signout');
 });
