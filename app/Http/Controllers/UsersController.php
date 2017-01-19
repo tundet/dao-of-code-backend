@@ -42,7 +42,7 @@ class UsersController extends Controller
 
             $user->save();
 
-            return response()->json(['message' => 'User ' . $user->username . ' has been created.'], 200);
+            return response()->json(['message' => 'User ' . $user->username . ' has been created.'], 201);
         } catch (\Exception $ex) {
             return response()->json(['message' => 'Unable to create a new user.'], 500);
         }
