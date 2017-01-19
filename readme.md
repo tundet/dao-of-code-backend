@@ -1,5 +1,7 @@
 # Dao of Code API
 
+Back end for Dao of Code. Built with [Lumen](http://lumen.laravel.com).
+
 ## Authentication
 
 Authentication is required for all routes except the following:
