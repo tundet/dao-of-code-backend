@@ -23,9 +23,12 @@ header.
 
 * /users - Create a new user.
     Required fields:
-    * username
-    * password
-    * email
+    
+|   Field name   |     Type     |             Description             |
+|----------------|--------------|-------------------------------------|
+| Username       | String       | Username of the user.               |
+| Password       | String       | Password of the user.               |
+| Email          | String       | Email address of the user.          |
 
 ### Authentication
 
@@ -34,12 +37,15 @@ header.
 * /signin - Sign in to the application.
 
     Required fields:
-    * username
-    * password
+
+|   Field name   |     Type     |             Description             |
+|----------------|--------------|-------------------------------------|
+| Username       | String       | Username of the user.               |
+| Password       | String       | Password of the user.               |
 
 If the sign-in attempt is successful, a new session token will be generated
 and sent back in the `api_token` attribute of the JSON response.
 
 * /signout - Sign out of the application.
 
-    Required fields:none
+    Required fields: none
