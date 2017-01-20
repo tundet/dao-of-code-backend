@@ -19,7 +19,7 @@ $app->get('/', function () use ($app) {
  * Routes without authentication.
  */
 $app->post('signin', 'AuthController@signin');
-$app->post('signup', 'AuthController@signup');
+$app->post('users', 'UsersController@post');
 
 /**
  * User routes.
@@ -27,7 +27,6 @@ $app->post('signup', 'AuthController@signup');
 $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('users', 'UsersController@all');
     $app->get('users/{identifier}', 'UsersController@get');
-    $app->post('users', 'UsersController@post');
     $app->put('users/{id}', 'UsersController@put');
     $app->delete('users/{id}', 'UsersController@delete');
 
