@@ -2,6 +2,10 @@
 
 Back end for Dao of Code. Built with [Lumen](http://lumen.laravel.com).
 
+The API can be accessed at
+[https://dao-api.othnet.ga](https://dao-api.othnet.ga).
+Using HTTPS is required.
+
 ## Authentication
 
 Authentication is required for all routes except the following:
