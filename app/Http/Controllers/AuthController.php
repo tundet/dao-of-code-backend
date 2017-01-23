@@ -24,6 +24,7 @@ class AuthController extends Controller
                 'api_token' => bin2hex(openssl_random_pseudo_bytes(128))
             ];
 
+            $user->api_token = $response['api_token'];
             $user->save();
 
             return response()->json($response, 200);
