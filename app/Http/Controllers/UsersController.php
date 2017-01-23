@@ -26,9 +26,9 @@ class UsersController extends Controller
     public function get($identifier)
     {
         if (is_numeric($identifier)) {
-            return User::find($identifier);
+            return User::findOrFail($identifier);
         } else {
-            return User::where("username", $identifier)->first();
+            return User::where("username", $identifier)->firstOrFail();
         }
     }
 
