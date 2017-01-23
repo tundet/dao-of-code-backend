@@ -24,13 +24,12 @@ class AuthController extends Controller
                 'api_token' => bin2hex(openssl_random_pseudo_bytes(128))
             ];
 
-            $user->api_token = $response['api_token'];
             $user->save();
 
             return response()->json($response, 200);
         }
 
-        return response()->json(['message' => 'Signin attempt failed.'], 401);
+        return response()->json(['message' => $user->api_token], 401);
     }
 
     public function signout(Request $request)
