@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "db2881b7dab485c4b60f2e46328d524a",
+    "content-hash": "fcc5eadfd7d50b2a61d044c5e572c732",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2263,6 +2263,28 @@
     ],
     "packages-dev": [
         {
+            "name": "apidoc/apidoc",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/williamweber2/apidoc.git",
+                "reference": "8cdae24c9d3b15e665481155a8c3e8b067540a08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/williamweber2/apidoc/zipball/8cdae24c9d3b15e665481155a8c3e8b067540a08",
+                "reference": "8cdae24c9d3b15e665481155a8c3e8b067540a08",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Documentation for API",
+            "time": "2014-09-26T18:43:47+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
             "source": {
@@ -3683,7 +3705,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "apidoc/apidoc": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
