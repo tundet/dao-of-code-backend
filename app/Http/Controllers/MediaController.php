@@ -57,4 +57,15 @@ class MediaController extends Controller
             return response()->json(['message' => 'Unable to create a new medium.'], 500);
         }
     }
+
+    public function delete($id)
+    {
+        try {
+            Medium::find($id)->delete();
+
+            return response()->json(['message' => 'The medium has been deleted.'], 201);
+        } catch (\Exception $ex) {
+            return response()->json(['message' => 'Unable to delete the selected medium.'], 500);
+        }
+    }
 }

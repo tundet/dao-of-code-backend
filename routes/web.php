@@ -40,6 +40,6 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
      */
     $app->get('media', 'MediaController@all');
     $app->get('media/{id}', 'MediaController@get');
-    $app->get('search/media', 'MediaController@search');
     $app->post('media', 'MediaController@post');
+    $app->delete('media/{id}', 'MediaController@delete');
 });
