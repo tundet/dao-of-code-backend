@@ -41,6 +41,11 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('users/{id}/groups', 'UsersController@getGroups');
 
     /**
+     * User group routes.
+     */
+    $app->get('users/{id}/comments', 'UsersController@getComments');
+
+    /**
      * Authentication routes.
      */
     $app->post('signout', 'AuthController@signout');
@@ -54,10 +59,23 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->delete('media/{id}', 'MediaController@delete');
 
     /**
+     * Medium routes.
+     */
+    $app->get('media/{id}/comments', 'MediaController@getComments');
+
+    /**
      * Group routes.
      */
     $app->get('groups', 'GroupsController@all');
     $app->get('groups/{id}', 'GroupsController@get');
     $app->post('groups', 'GroupsController@post');
     $app->delete('groups/{id}', 'GroupsController@delete');
+
+    /**
+     * Comment routes.
+     */
+    $app->get('comments', 'CommentsController@all');
+    $app->get('comments/{id}', 'CommentsController@get');
+    $app->post('comments', 'CommentsController@post');
+    $app->delete('comments/{id}', 'CommentsController@delete');
 });

@@ -47,6 +47,11 @@ class UsersController extends Controller
         return $this->getUserInstance($identifier)->groups;
     }
 
+    public function getComments($identifier)
+    {
+        return $this->getUserInstance($identifier)->comments;
+    }
+
     public function post(Request $request)
     {
         try {

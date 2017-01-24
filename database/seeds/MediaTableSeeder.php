@@ -18,7 +18,7 @@ class MediaTableSeeder extends Seeder
             'file_name'     => 'test1.jpg',
             'title'         => 'Test Image 1',
             'description'   => 'This is the first test image.',
-            'tag'           => 'php',
+            'tag'           => 'C++',
             'media_type'    => 'image',
             'mime_type'     => 'image/jpeg'
         ]);

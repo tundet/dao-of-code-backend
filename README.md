@@ -64,6 +64,7 @@ and sent back in the `api_token` attribute of the JSON response.
     * Example: /users?tag=php - Search media tagged as PHP.
     * Supported fields for searching: `tag`, `title`, `description`.
 * /media/{id} - Get all data of a medium.
+* /media/{id}/comments - Get all comments of a medium.
 
 **POST:**
 
@@ -112,6 +113,29 @@ Required fields:
 **DELETE:**
 
 * /media/{id} - Delete a medium.
+
+### Comments
+
+**GET:**
+
+* /comments - Get all comments.
+* /comments/{id} - Get all data of a comment.
+
+**POST:**
+
+* /comments - Create a new comment.
+
+Required fields:
+    
+|   Field name   |     Type     |             Description                 |
+|----------------|--------------|-----------------------------------------|
+| user_id        | String       | ID of the user the comment belongs to.  |
+| medium_id      | String       | ID of the medium the comment belongs to.|            |
+| comment        | String       | Content of the comment.                 |
+
+**DELETE:**
+
+* /comments/{id} - Delete a comment.
 
 ### Authentication
 

@@ -39,4 +39,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasMany('App\Group');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

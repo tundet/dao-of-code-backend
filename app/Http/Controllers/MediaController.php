@@ -35,6 +35,12 @@ class MediaController extends Controller
         return Medium::findOrFail($identifier);
     }
 
+
+    public function getComments($identifier)
+    {
+        return Medium::findOrFail($identifier)->comments;
+    }
+
     public function post(Request $request)
     {
         try {

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class Medium extends Model implements AuthenticatableContract, AuthorizableContract
+class Comment extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
 
@@ -18,8 +18,7 @@ class Medium extends Model implements AuthenticatableContract, AuthorizableContr
      * @var array
      */
     protected $fillable = [
-        'user_id', 'group_id', 'name', 'file_name', 'title', 'description', 'tag', 'media_type', 'mime_type',
-        'group_priority',
+        'user_id', 'media_id', 'comment',
     ];
 
     /**
@@ -28,11 +27,6 @@ class Medium extends Model implements AuthenticatableContract, AuthorizableContr
      * @var array
      */
     protected $hidden = [
-
+        'password', 'api_token',
     ];
-
-    public function comments()
-    {
-        return $this->hasMany('App\Comment');
-    }
 }
