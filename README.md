@@ -57,15 +57,15 @@ and sent back in the `api_token` attribute of the JSON response.
 
 **GET:**
 
-* /users - Get all media.
-* /users{?key=value} - Search media
+* /media - Get all media.
+* /media{?key=value} - Search media
     * Example: /users?tag=php - Search media tagged as PHP.
     * Supported fields for searching: `tag`, `title`, `description`.
-* /users/{id} - Get all data of a medium.
+* /media/{id} - Get all data of a medium.
 
 **POST:**
 
-* /users - Create a new medium.
+* /media - Create a new medium.
 
 Required fields:
     
