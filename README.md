@@ -95,8 +95,8 @@ Optional fields:
 
 **GET:**
 
-* /media - Get all groups.
-* /media/{id} - Get all data of a group.
+* /groups - Get all groups.
+* /groups/{id} - Get all data of a group.
 
 **POST:**
 
