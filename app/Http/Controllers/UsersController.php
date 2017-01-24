@@ -18,12 +18,7 @@ class UsersController extends Controller
         //
     }
 
-    public function all()
-    {
-        return User::all();
-    }
-
-    public function get($identifier)
+    private function getUserInstance($identifier)
     {
         if (is_numeric($identifier)) {
             return User::findOrFail($identifier);
@@ -32,9 +27,19 @@ class UsersController extends Controller
         }
     }
 
-    public function getMedia($id)
+    public function all()
     {
-        return User::findOrFail($id)->media;
+        return User::all();
+    }
+
+    public function get($identifier)
+    {
+        return $this->getUserInstance($identifier);
+    }
+
+    public function getMedia($identifier)
+    {
+        return $this->getUserInstance($identifier)->media;
     }
 
     public function post(Request $request)

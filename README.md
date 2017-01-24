@@ -24,6 +24,7 @@ header.
 
 * /users - Get all users.
 * /users/{id/username} - Get all data of a user.
+* /users/{id/username}/media - Get all media of a user.
 
 **POST:**
 
