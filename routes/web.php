@@ -34,4 +34,12 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
      * Authentication routes.
      */
     $app->post('signout', 'AuthController@signout');
+
+    /**
+     * Medium routes.
+     */
+    $app->get('media', 'MediaController@all');
+    $app->get('media/{id}', 'MediaController@get');
+    $app->get('search/media', 'MediaController@search');
+    $app->post('media', 'MediaController@post');
 });

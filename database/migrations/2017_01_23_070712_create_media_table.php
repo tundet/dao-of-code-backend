@@ -22,7 +22,7 @@ class CreateMediaTable extends Migration
             $table->string('description');
             $table->string('tag');
             $table->string('media_type');
-            $table->string('mime_type');
+            $table->string('mime_type')->nullable();
             $table->integer('group_priority')->nullable();
             $table->timestamps();
         });
