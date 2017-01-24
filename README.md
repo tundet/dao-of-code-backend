@@ -95,7 +95,7 @@ Optional fields:
 
 * /signin - Sign in to the application.
 
-    Required fields:
+Required fields:
 
 |   Field name   |     Type     |             Description             |
 |----------------|--------------|-------------------------------------|
