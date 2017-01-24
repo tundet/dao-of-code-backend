@@ -32,6 +32,11 @@ class UsersController extends Controller
         }
     }
 
+    public function getMedia($id)
+    {
+        return User::findOrFail($id)->media;
+    }
+
     public function post(Request $request)
     {
         try {

@@ -31,6 +31,11 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->delete('users/{id}', 'UsersController@delete');
 
     /**
+     * User medium routes.
+     */
+    $app->get('users/{id}/media', 'UsersController@getMedia');
+
+    /**
      * Authentication routes.
      */
     $app->post('signout', 'AuthController@signout');

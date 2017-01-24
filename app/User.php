@@ -29,4 +29,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password', 'api_token',
     ];
+
+    public function media()
+    {
+        return $this->hasMany('App\Medium');
+    }
 }
