@@ -36,6 +36,11 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('users/{id}/media', 'UsersController@getMedia');
 
     /**
+     * User group routes.
+     */
+    $app->get('users/{id}/groups', 'UsersController@getGroups');
+
+    /**
      * Authentication routes.
      */
     $app->post('signout', 'AuthController@signout');
@@ -47,4 +52,12 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('media/{id}', 'MediaController@get');
     $app->post('media', 'MediaController@post');
     $app->delete('media/{id}', 'MediaController@delete');
+
+    /**
+     * Group routes.
+     */
+    $app->get('groups', 'GroupsController@all');
+    $app->get('groups/{id}', 'GroupsController@get');
+    $app->post('groups', 'GroupsController@post');
+    $app->delete('groups/{id}', 'GroupsController@delete');
 });

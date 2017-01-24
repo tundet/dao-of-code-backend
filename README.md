@@ -25,6 +25,7 @@ header.
 * /users - Get all users.
 * /users/{id/username} - Get all data of a user.
 * /users/{id/username}/media - Get all media of a user.
+* /users/{id/username}/groups - Get all groups of a user.
 
 **POST:**
 
@@ -85,6 +86,28 @@ Optional fields:
 | group_id       | Integer      | ID of the group the media belongs to.|
 | group_priority | Integer      | Order of visibility in media groups. |
 | mime_type      | String       | MIME type of the media.              |
+
+**DELETE:**
+
+* /media/{id} - Delete a medium.
+
+### Groups
+
+**GET:**
+
+* /media - Get all groups.
+* /media/{id} - Get all data of a group.
+
+**POST:**
+
+* /groups - Create a new group.
+
+Required fields:
+    
+|   Field name   |     Type     |             Description              |
+|----------------|--------------|--------------------------------------|
+| name           | String       | Name of the group.                   |
+| tag            | String       | Tag assigned to the group.           |
 
 **DELETE:**
 

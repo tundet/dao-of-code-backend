@@ -42,6 +42,11 @@ class UsersController extends Controller
         return $this->getUserInstance($identifier)->media;
     }
 
+    public function getGroups($identifier)
+    {
+        return $this->getUserInstance($identifier)->groups;
+    }
+
     public function post(Request $request)
     {
         try {

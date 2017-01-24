@@ -40,7 +40,7 @@ class MediaController extends Controller
         try {
             $medium = new Medium();
 
-            $medium->username = $request->input('user_id');
+            $medium->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
             $medium->email = $request->input('group_id');
             $medium->file_name = $request->input('file_name');
             $medium->title = $request->input('title');
