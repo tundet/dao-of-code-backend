@@ -120,7 +120,6 @@ class FavoritesController extends Controller
                                     "message": "The favorite has been deleted."
                                 }
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function delete($id)
