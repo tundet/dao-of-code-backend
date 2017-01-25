@@ -18,16 +18,80 @@ class FavoritesController extends Controller
         //
     }
 
+    /**
+     * @apiGroup            Favorites
+     * @apiName             GetAllFavorites
+     * @apiDescription      Get a list of all favorites.
+     * @api                 {get} /favorites Get all favorites
+     * @apiSuccess          (200) {array} message List of favorites.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+     *                              [
+                                        {
+                                            "id": 1,
+                                            "user_id": 1,
+                                            "medium_id": 2,
+                                            "created_at": null,
+                                            "updated_at": null
+                                        },
+                                        {
+                                            "id": 2,
+                                            "user_id": 2,
+                                            "medium_id": 3,
+                                            "created_at": null,
+                                            "updated_at": null
+                                        }
+                                    ]
+
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function all(Request $request)
     {
         return Favorite::all();
     }
 
+    /**
+     * @apiGroup            Favorites
+     * @apiName             GetFavorite
+     * @apiDescription      Get a favorite by ID.
+     * @api                 {get} /favorites/:id Get a favorite
+     * @apiParam            {string} id ID of the favorite.
+     * @apiSuccess          (200) {string} message Favorite object.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                {
+                                    "id": 1,
+                                    "user_id": 1,
+                                    "medium_id": 2,
+                                    "created_at": null,
+                                    "updated_at": null
+                                }
+     *
+     * @param $identifier
+     * @return mixed
+     */
     public function get($id)
     {
         return Favorite::findOrFail($id);
     }
 
+    /**
+     * @apiGroup            Favorites
+     * @apiName             CreateFavorite
+     * @apiDescription      Create a favorite.
+     * @api                 {post} /favorites Create a favorite
+     * @apiParam            {number} user_id ID of the user the favorite belongs to.
+     * @apiParam            {number} medium_id ID of the medium the favorite belongs to.
+     * @apiSuccess          (200) {json} message Success message
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 201 Created
+                                {
+                                    "message": "The favorite has been created."
+                                }
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function post(Request $request)
     {
         try {
@@ -49,7 +113,7 @@ class FavoritesController extends Controller
         try {
             Favorite::find($id)->delete();
 
-            return response()->json(['message' => 'The Favorite has been deleted.'], 201);
+            return response()->json(['message' => 'The favorite has been deleted.'], 201);
         } catch (\Exception $ex) {
             return response()->json(['message' => 'Unable to delete the selected favorite.'], 500);
         }
