@@ -186,7 +186,7 @@ class UsersController extends Controller
      * @apiParam            {string} username Username of the user.
      * @apiParam            {string} password Password of the user.
      * @apiParam            {string} email Email address of the user.
-     * @apiSuccess          (200) {json} message Success message
+     * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
                                     {

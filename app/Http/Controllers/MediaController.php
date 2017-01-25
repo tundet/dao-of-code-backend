@@ -18,6 +18,47 @@ class MediaController extends Controller
         //
     }
 
+    /**
+     * @apiGroup            Media
+     * @apiName             GetAllMedia
+     * @apiDescription      Get a list of all media.
+     * @api                 {get} /media Get all media
+     * @apiSuccess          (200) {array} message List of media.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+     *                              [
+                                        {
+                                            "id": 1,
+                                            "user_id": 1,
+                                            "group_id": null,
+                                            "file_name": "test1.jpg",
+                                            "title": "Test Image 1",
+                                            "description": "This is the first test image.",
+                                            "tag": "C++",
+                                            "media_type": "image",
+                                            "mime_type": "image/jpeg",
+                                            "group_priority": null,
+                                            "created_at": null,
+                                            "updated_at": null
+                                        },
+                                        {
+                                            "id": 2,
+                                            "user_id": 2,
+                                            "group_id": null,
+                                            "file_name": "test2.jpg",
+                                            "title": "Test Image 2",
+                                            "description": "This is the second test image.",
+                                            "tag": "cpp",
+                                            "media_type": "image",
+                                            "mime_type": "image/jpeg",
+                                            "group_priority": null,
+                                            "created_at": null,
+                                            "updated_at": null
+                                        }
+                                    ]
+
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function all(Request $request)
     {
         if (count($request->query()) > 0) {
@@ -30,29 +71,124 @@ class MediaController extends Controller
         return Medium::all();
     }
 
-    public function get($identifier)
+    /**
+     * @apiGroup            Media
+     * @apiName             GetMedium
+     * @apiDescription      Get a medium by ID.
+     * @api                 {get} /media/:id Get a medium
+     * @apiParam            {number} id ID of the medium.
+     * @apiSuccess          (200) {string} message Medium object.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                {
+                                    "id": 1,
+                                    "user_id": 1,
+                                    "group_id": null,
+                                    "file_name": "test1.jpg",
+                                    "title": "Test Image 1",
+                                    "description": "This is the first test image.",
+                                    "tag": "C++",
+                                    "media_type": "image",
+                                    "mime_type": "image/jpeg",
+                                    "group_priority": null,
+                                    "created_at": null,
+                                    "updated_at": null
+                                }
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function get($id)
     {
-        return Medium::findOrFail($identifier);
+        return Medium::findOrFail($id);
     }
 
 
-    public function getComments($identifier)
+    /**
+     * @apiGroup            Media
+     * @apiName             GetMediumComments
+     * @apiDescription      Get comments of a medium by ID.
+     * @api                 {get} /media/:id/comments Get comments of a medium
+     * @apiParam            {number} id ID of the medium.
+     * @apiSuccess          (200) {array} message List of comments.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                        "id": 3,
+                                        "user_id": 3,
+                                        "medium_id": 1,
+                                        "comment": "The third comment.",
+                                        "created_at": null,
+                                        "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getComments($id)
     {
-        return Medium::findOrFail($identifier)->comments;
+        return Medium::findOrFail($id)->comments;
     }
 
-    public function getFavorites($identifier)
+    /**
+     * @apiGroup            Media
+     * @apiName             GetMediumFavorites
+     * @apiDescription      Get favorites of a medium by ID.
+     * @api                 {get} /media/:id/favorites Get favorites of a medium
+     * @apiParam            {number} id ID of the medium.
+     * @apiSuccess          (200) {array} message List of favorites.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                        "id": 3,
+                                        "user_id": 3,
+                                        "medium_id": 1,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getFavorites($id)
     {
-        return Medium::findOrFail($identifier)->favorites;
+        return Medium::findOrFail($id)->favorites;
     }
 
+    /**
+     * @apiGroup            Media
+     * @apiName             CreateMedium
+     * @apiDescription      Create a medium.
+     * @api                 {post} /media Create a medium
+     * @apiParam            {number} group_id (Optional) ID of the group the medium belongs to.
+     * @apiParam            {string} file_name (Optional) Name of the file on the file system.
+     * @apiParam            {string} title Title of the medium.
+     * @apiParam            {string} description Description of the medium.
+     * @apiParam            {string} tag A tag assigned to the medium. Used to categorize media.
+     * @apiParam            {string} media_type Type of the medium ("text", "sound" or "video").
+     * @apiParam            {string} mime_type (Optional) MIME type of the media.
+     * @apiParam            {number} group_priority Display priority in media groups. Higher is shown first.
+     * @apiSuccess          (201) {json} message Success message
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 201 Created
+                                {
+                                    "message": "The medium image1 has been created."
+                                }
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function post(Request $request)
     {
         try {
             $medium = new Medium();
 
             $medium->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
-            $medium->email = $request->input('group_id');
+            $medium->group_id = $request->input('group_id');
             $medium->file_name = $request->input('file_name');
             $medium->title = $request->input('title');
             $medium->description = $request->input('description');
@@ -69,6 +205,21 @@ class MediaController extends Controller
         }
     }
 
+    /**
+     * @apiGroup            Media
+     * @apiName             DeleteMedium
+     * @apiDescription      Delete a medium.
+     * @api                 {delete} /media/:id Delete a medium
+     * @apiParam            {number} id ID of the medium.
+     * @apiSuccess          (200) {json} message Success message
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 20 OK
+                                {
+                                    "message": "The medium has been deleted."
+                                }
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete($id)
     {
         try {

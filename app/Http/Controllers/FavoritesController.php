@@ -55,7 +55,7 @@ class FavoritesController extends Controller
      * @apiName             GetFavorite
      * @apiDescription      Get a favorite by ID.
      * @api                 {get} /favorites/:id Get a favorite
-     * @apiParam            {string} id ID of the favorite.
+     * @apiParam            {number} id ID of the favorite.
      * @apiSuccess          (200) {string} message Favorite object.
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 200 OK
@@ -67,7 +67,7 @@ class FavoritesController extends Controller
                                     "updated_at": null
                                 }
      *
-     * @param $identifier
+     * @param $id
      * @return mixed
      */
     public function get($id)
@@ -81,7 +81,7 @@ class FavoritesController extends Controller
      * @apiDescription      Create a favorite.
      * @api                 {post} /favorites Create a favorite
      * @apiParam            {number} medium_id ID of the medium the favorite belongs to.
-     * @apiSuccess          (200) {json} message Success message
+     * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
                                 {
@@ -111,7 +111,8 @@ class FavoritesController extends Controller
      * @apiGroup            Favorites
      * @apiName             DeleteFavorite
      * @apiDescription      Delete a favorite.
-     * @api                 {delete} /favorites Delete a favorite
+     * @api                 {delete} /favorites/:id Delete a favorite
+     * @apiParam            {number} id ID of the favorite.
      * @apiSuccess          (200) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 20 OK

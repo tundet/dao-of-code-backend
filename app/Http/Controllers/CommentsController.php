@@ -57,7 +57,7 @@ class CommentsController extends Controller
      * @apiName             GetComment
      * @apiDescription      Get a comment by ID.
      * @api                 {get} /comments/:id Get a comment
-     * @apiParam            {string} id ID of the comment.
+     * @apiParam            {number} id ID of the comment.
      * @apiSuccess          (200) {string} message Comment object.
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 200 OK
@@ -85,7 +85,7 @@ class CommentsController extends Controller
      * @api                 {post} /comments Create a comment
      * @apiParam            {number} medium_id ID of the medium the comment belongs to.
      * @apiParam            {string} Comment Contents of the comment.
-     * @apiSuccess          (200) {json} message Success message
+     * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
                                 {
@@ -116,7 +116,8 @@ class CommentsController extends Controller
      * @apiGroup            Comments
      * @apiName             DeleteComment
      * @apiDescription      Delete a comment.
-     * @api                 {delete} /comments Delete a comment
+     * @api                 {delete} /comments/:id Delete a comment
+     * @apiParam            {number} id ID of the comment.
      * @apiSuccess          (200) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 20 OK
