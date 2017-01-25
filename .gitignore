@@ -4,4 +4,4 @@ Homestead.json
 Homestead.yaml
 .env
 public/docs
-
+storage/app/public
