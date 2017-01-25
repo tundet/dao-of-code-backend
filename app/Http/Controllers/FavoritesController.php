@@ -80,7 +80,6 @@ class FavoritesController extends Controller
      * @apiName             CreateFavorite
      * @apiDescription      Create a favorite.
      * @api                 {post} /favorites Create a favorite
-     * @apiParam            {number} user_id ID of the user the favorite belongs to.
      * @apiParam            {number} medium_id ID of the medium the favorite belongs to.
      * @apiSuccess          (200) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
@@ -112,7 +111,7 @@ class FavoritesController extends Controller
      * @apiGroup            Favorites
      * @apiName             DeleteFavorite
      * @apiDescription      Delete a favorite.
-     * @api                 {delete} /favorites delete a favorite
+     * @api                 {delete} /favorites Delete a favorite
      * @apiSuccess          (200) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 20 OK
