@@ -30,19 +30,8 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->put('users/{id}', 'UsersController@put');
     $app->delete('users/{id}', 'UsersController@delete');
 
-    /**
-     * User medium routes.
-     */
     $app->get('users/{id}/media', 'UsersController@getMedia');
-
-    /**
-     * User group routes.
-     */
     $app->get('users/{id}/groups', 'UsersController@getGroups');
-
-    /**
-     * User group routes.
-     */
     $app->get('users/{id}/comments', 'UsersController@getComments');
 
     /**
@@ -57,11 +46,8 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('media/{id}', 'MediaController@get');
     $app->post('media', 'MediaController@post');
     $app->delete('media/{id}', 'MediaController@delete');
-
-    /**
-     * Medium routes.
-     */
     $app->get('media/{id}/comments', 'MediaController@getComments');
+    $app->get('media/{id}/favorites', 'MediaController@getFavorites');
 
     /**
      * Group routes.
@@ -78,4 +64,12 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('comments/{id}', 'CommentsController@get');
     $app->post('comments', 'CommentsController@post');
     $app->delete('comments/{id}', 'CommentsController@delete');
+
+    /**
+     * Favorite routes.
+     */
+    $app->get('favorites', 'FavoritesController@all');
+    $app->get('favorites/{id}', 'FavoritesController@get');
+    $app->post('favorites', 'FavoritesController@post');
+    $app->delete('favorites/{id}', 'FavoritesController@delete');
 });
