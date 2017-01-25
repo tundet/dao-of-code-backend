@@ -199,9 +199,13 @@ class MediaController extends Controller
 
             $medium->save();
 
+            if ($request->hasFile('file') && ($medium->media_type === 'video' || $medium->media_type === 'audio')) {
+                $request->file('file')->move(storage_path() . DIRECTORY_SEPARATOR . $medium->user_id, $medium->file_name);
+            }
+
             return response()->json(['message' => 'Medium ' . $medium->title . ' has been created.'], 201);
         } catch (\Exception $ex) {
-            return response()->json(['message' => 'Unable to create a new medium.'], 500);
+            return response()->json(['message' => 'Unable to create a new medium.' . $ex->getMessage()], 500);
         }
     }
 
