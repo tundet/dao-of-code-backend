@@ -108,6 +108,21 @@ class FavoritesController extends Controller
         }
     }
 
+    /**
+     * @apiGroup            Favorites
+     * @apiName             DeleteFavorite
+     * @apiDescription      Delete a favorite.
+     * @api                 {delete} /favorites delete a favorite
+     * @apiSuccess          (200) {json} message Success message
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 20 OK
+                                {
+                                    "message": "The favorite has been deleted."
+                                }
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete($id)
     {
         try {
