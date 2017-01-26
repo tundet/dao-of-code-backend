@@ -165,11 +165,10 @@ class MediaController extends Controller
      * @apiDescription      Create a medium.
      * @api                 {post} /media Create a medium
      * @apiParam            {number} group_id (Optional) ID of the group the medium belongs to.
-     * @apiParam            {string} file_name (Optional) Name of the file on the file system.
      * @apiParam            {string} title Title of the medium.
      * @apiParam            {string} description Description of the medium.
      * @apiParam            {string} tag A tag assigned to the medium. Used to categorize media.
-     * @apiParam            {string} media_type Type of the medium ("text", "sound" or "video").
+     * @apiParam            {string} media_type Type of the medium ("text", "audio" or "video").
      * @apiParam            {string} mime_type (Optional) MIME type of the media.
      * @apiParam            {number} group_priority Display priority in media groups. Higher is shown first.
      * @apiSuccess          (201) {json} message Success message
@@ -189,7 +188,7 @@ class MediaController extends Controller
 
             $medium->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
             $medium->group_id = $request->input('group_id');
-            $medium->file_name = $request->input('file_name');
+            $medium->file_name = Medium::all()->last()->pluck('id') . '.' . $request->file('file')->getExtension();
             $medium->title = $request->input('title');
             $medium->description = $request->input('description');
             $medium->tag = $request->input('tag');
