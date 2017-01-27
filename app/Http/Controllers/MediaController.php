@@ -170,7 +170,7 @@ class MediaController extends Controller
      * @apiParam            {string} tag A tag assigned to the medium. Used to categorize media.
      * @apiParam            {string} media_type Type of the medium ("text", "audio" or "video").
      * @apiParam            {string} mime_type (Optional) MIME type of the media.
-     * @apiParam            {number} group_priority Display priority in media groups. Higher is shown first.
+     * @apiParam            {number} group_priority (Optional) Display priority in media groups. Higher is shown first.
      * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
@@ -196,12 +196,12 @@ class MediaController extends Controller
             $medium->mime_type = $request->input('mime_type');
             $medium->group_priority = $request->input('group_priority');
 
-            $medium->save();
-
             if ($request->hasFile('file') && ($medium->media_type === 'video' || $medium->media_type === 'audio')) {
                 $request->file('file')->move(storage_path() . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR .
                     'public' . DIRECTORY_SEPARATOR . $medium->user_id, $medium->file_name);
             }
+
+            $medium->save();
 
             return response()->json(['message' => 'Medium ' . $medium->title . ' has been created.'], 201);
         } catch (\Exception $ex) {
