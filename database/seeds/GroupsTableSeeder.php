@@ -16,13 +16,19 @@ class GroupsTableSeeder extends Seeder
         DB::table('groups')->insert([
             'user_id'   => 1,
             'name'      => 'My PHP Tutorials',
-            'tag'       => 'PHP'
+            'tag'       => 'php'
+        ]);
+
+        DB::table('groups')->insert([
+            'user_id'   => 1,
+            'name'      => 'Useful JavaScript Code Snippets',
+            'tag'       => 'javascript'
         ]);
 
         DB::table('groups')->insert([
             'user_id'  => 2,
             'name'     => 'Miscellaneous Tutorials',
-            'tag'  => 'C++'
+            'tag'  => 'cpp'
         ]);
     }
 }
