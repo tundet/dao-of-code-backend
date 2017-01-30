@@ -126,7 +126,7 @@ class UsersController extends Controller
      * @apiGroup            Users
      * @apiName             GetGroupsOfUser
      * @apiDescription      Get a list of groups created by a user.
-     * @api                 {get} /users:identifier/groups Get groups of a user
+     * @api                 {get} /users/:identifier/groups Get groups of a user
      * @apiParam            {string} identifier User ID or username.
      * @apiSuccess          (200) {array} array List of groups.
      * @apiSuccessExample   {json} Success-Response:
