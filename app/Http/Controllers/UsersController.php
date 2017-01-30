@@ -92,7 +92,7 @@ class UsersController extends Controller
      * @apiGroup            Users
      * @apiName             GetMediaOfUser
      * @apiDescription      Get a list of media uploaded by a user.
-     * @api                 {get} /users:identifier Get media of a user
+     * @api                 {get} /users/:identifier Get media of a user
      * @apiParam            {string} identifier User ID or username.
      * @apiSuccess          (200) {json} array List of media.
      * @apiSuccessExample   {json} Success-Response:
@@ -154,7 +154,7 @@ class UsersController extends Controller
      * @apiGroup            Users
      * @apiName             GetCommentsOfUser
      * @apiDescription      Get a list of comments posted by a user.
-     * @api                 {get} /users:identifier/comments Get comments of a user
+     * @api                 {get} /users/:identifier/comments Get comments of a user
      * @apiParam            {string} identifier User ID or username.
      * @apiSuccess          (200) {array} message List of comments.
      * @apiSuccessExample   {json} Success-Response:
