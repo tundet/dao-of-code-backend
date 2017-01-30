@@ -105,7 +105,7 @@ class UsersController extends Controller
                                         "file_name": "test1.jpg",
                                         "title": "Test Image 1",
                                         "description": "This is the first test image.",
-                                        "tag": "C++",
+                                        "tag": "cpp",
                                         "media_type": "image",
                                         "mime_type": "image/jpeg",
                                         "group_priority": null,
