@@ -103,6 +103,53 @@ class MediaController extends Controller
         return Medium::findOrFail($id);
     }
 
+    /**
+     * @apiGroup            Media
+     * @apiName             GetLatestMedia
+     * @apiDescription      Get the latest media.
+     * @api                 {get} /media/latest/:amount Get the latest media
+     * @apiParam            {number} amount Amount of media to get.
+     * @apiSuccess          (200) {array} message List of media.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                        "id": 3,
+                                        "user_id": 3,
+                                        "group_id": null,
+                                        "file_name": "test3.jpg",
+                                        "title": "Test Image 3",
+                                        "description": "This is the third test image.",
+                                        "tag": "php",
+                                        "media_type": "image",
+                                        "mime_type": "image/jpeg",
+                                        "group_priority": null,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    },
+                                    {
+                                        "id": 2,
+                                        "user_id": 2,
+                                        "group_id": null,
+                                        "file_name": "test2.jpg",
+                                        "title": "Test Image 2",
+                                        "description": "This is the second test image.",
+                                        "tag": "cpp",
+                                        "media_type": "image",
+                                        "mime_type": "image/jpeg",
+                                        "group_priority": null,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $amount
+     * @return mixed
+     */
+    public function getLatest($amount)
+    {
+        return Medium::orderBy('id', 'desc')->take($amount)->get();
+    }
 
     /**
      * @apiGroup            Media
