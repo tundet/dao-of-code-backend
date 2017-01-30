@@ -43,12 +43,13 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
      * Medium routes.
      */
     $app->get('media', 'MediaController@all');
-    $app->get('media/latest/{amount}', 'MediaController@getLatest');
-    $app->get('media/{id}', 'MediaController@get');
+    $app->get('media/latest/{amount?}', 'MediaController@getLatest');
+    $app->get('media/{id}/comments/latest/{amount}', 'MediaController@getLatestComments');
     $app->post('media', 'MediaController@post');
     $app->delete('media/{id}', 'MediaController@delete');
     $app->get('media/{id}/comments', 'MediaController@getComments');
     $app->get('media/{id}/favorites', 'MediaController@getFavorites');
+    $app->get('media/{id}', 'MediaController@get');
 
     /**
      * Group routes.

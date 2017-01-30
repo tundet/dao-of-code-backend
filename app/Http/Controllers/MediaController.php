@@ -181,6 +181,36 @@ class MediaController extends Controller
 
     /**
      * @apiGroup            Media
+     * @apiName             GetLatestMediumComments
+     * @apiDescription      Get the latest comments of a medium by ID.
+     * @api                 {get} /media/:id/comments/latest/:amount Get the latest comments of a medium
+     * @apiParam            {number} id ID of the medium.
+     * @apiParam            {number} amount Amount of comments to get.
+     * @apiSuccess          (200) {array} message List of comments.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                    "id": 3,
+                                    "user_id": 3,
+                                    "medium_id": 1,
+                                    "comment": "The third comment.",
+                                    "created_at": null,
+                                    "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $id
+     * @param $amount
+     * @return mixed
+     */
+    public function getLatestComments($id, $amount)
+    {
+        return Medium::find($id)->comments()->orderBy('id', 'desc')->take($amount)->get();
+    }
+
+    /**
+     * @apiGroup            Media
      * @apiName             GetMediumFavorites
      * @apiDescription      Get favorites of a medium by ID.
      * @api                 {get} /media/:id/favorites Get favorites of a medium
