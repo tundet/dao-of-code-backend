@@ -19,7 +19,7 @@ class Medium extends Model implements AuthenticatableContract, AuthorizableContr
      */
     protected $fillable = [
         'user_id', 'group_id', 'name', 'file_name', 'title', 'description', 'tag', 'media_type', 'mime_type',
-        'group_priority',
+        'group_priority', 'youtube_url',
     ];
 
     /**

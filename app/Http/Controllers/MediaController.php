@@ -276,6 +276,7 @@ class MediaController extends Controller
      * @apiParam            {string} media_type Type of the medium ("text", "audio" or "video").
      * @apiParam            {string} mime_type (Optional) MIME type of the medium.
      * @apiParam            {number} group_priority (Optional) Display priority in media groups. Higher is shown first.
+     * @apiParam            {number} youtube_url (Optional) YouTube URL. Can be used instead of uploading a file.
      * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
