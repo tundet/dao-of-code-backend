@@ -56,7 +56,7 @@ class FavoritesController extends Controller
      * @apiDescription      Get a favorite by ID.
      * @api                 {get} /favorites/:id Get a favorite
      * @apiParam            {number} id ID of the favorite.
-     * @apiSuccess          (200) {string} message Favorite object.
+     * @apiSuccess          (200) {json} message Favorite object.
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 200 OK
                                 {
@@ -80,6 +80,7 @@ class FavoritesController extends Controller
      * @apiName             CreateFavorite
      * @apiDescription      Create a favorite.
      * @api                 {post} /favorites Create a favorite
+     * @apiParam            {number} user_id ID of the user the favorite belongs to.
      * @apiParam            {number} medium_id ID of the medium the favorite belongs to.
      * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
