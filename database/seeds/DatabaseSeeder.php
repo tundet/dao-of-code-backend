@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call('MediaTableSeeder');
         $this->call('CommentsTableSeeder');
         $this->call('FavoritesTableSeeder');
+        $this->call('LikesTableSeeder');
     }
 }

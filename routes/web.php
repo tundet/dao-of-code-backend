@@ -49,6 +49,7 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->delete('media/{id}', 'MediaController@delete');
     $app->get('media/{id}/comments', 'MediaController@getComments');
     $app->get('media/{id}/favorites', 'MediaController@getFavorites');
+    $app->get('media/{id}/likes', 'MediaController@getLikes');
     $app->get('media/{id}', 'MediaController@get');
 
     /**
@@ -74,4 +75,12 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('favorites/{id}', 'FavoritesController@get');
     $app->post('favorites', 'FavoritesController@post');
     $app->delete('favorites/{id}', 'FavoritesController@delete');
+
+    /**
+     * Like routes.
+     */
+    $app->get('likes', 'LikesController@all');
+    $app->get('likes/{id}', 'LikesController@get');
+    $app->post('likes', 'LikesController@post');
+    $app->delete('likes/{id}', 'LikesController@delete');
 });

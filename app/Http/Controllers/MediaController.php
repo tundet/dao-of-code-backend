@@ -238,6 +238,34 @@ class MediaController extends Controller
 
     /**
      * @apiGroup            Media
+     * @apiName             GetMediumLikes
+     * @apiDescription      Get likes of a medium by ID.
+     * @api                 {get} /media/:id/likes Get likes of a medium
+     * @apiParam            {number} id ID of the medium.
+     * @apiSuccess          (200) {array} message List of likes.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                        "id": 3,
+                                        "user_id": 3,
+                                        "medium_id": 1,
+                                        "like": 1,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getLikes($id)
+    {
+        return Medium::findOrFail($id)->likes;
+    }
+
+    /**
+     * @apiGroup            Media
      * @apiName             CreateMedium
      * @apiDescription      Create a medium.
      * @api                 {post} /media Create a medium
