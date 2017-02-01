@@ -273,8 +273,8 @@ class MediaController extends Controller
      * @apiParam            {string} title Title of the medium.
      * @apiParam            {string} description Description of the medium.
      * @apiParam            {string} tag A tag assigned to the medium. Used to categorize media.
-     * @apiParam            {file} file The file object to upload.
-     * @apiParam            {string} media_type Type of the medium ("text", "audio", "image" or "video").
+     * @apiParam            {file} file (Optional) The file object to upload.
+     * @apiParam            {string} media_type Type of the medium ("text", "audio", "image", "video" or "youtube").
      * @apiParam            {string} mime_type (Optional) MIME type of the medium.
      * @apiParam            {number} group_priority (Optional) Display priority in media groups. Higher is shown first.
      * @apiParam            {number} youtube_url (Optional) YouTube URL. Can be used instead of uploading a file.
@@ -303,7 +303,7 @@ class MediaController extends Controller
             $medium->mime_type = $request->input('mime_type');
             $medium->group_priority = $request->input('group_priority');
 
-            if ($request->hasFile('file') && ($medium->media_type === 'video' || $medium->media_type === 'audio')) {
+            if ($request->hasFile('file')) {
                 $request->file('file')->move(storage_path() . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR .
                     'public' . DIRECTORY_SEPARATOR . $medium->user_id, $medium->file_name);
             }
