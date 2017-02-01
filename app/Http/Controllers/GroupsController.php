@@ -119,7 +119,12 @@ class GroupsController extends Controller
             $group->tag = $request->input('tag');
             $group->save();
 
-            return response()->json(['message' => 'Group ' . $group->name . ' has been created.'], 201);
+            $response = [
+                'message'   => 'Group ' . $group->name . ' has been created.',
+                'id'        => $group->id
+            ];
+
+            return response()->json($response, 201);
         } catch (\Exception $ex) {
             return response()->json(['message' => 'Unable to create a new group.'], 500);
         }
