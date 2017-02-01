@@ -18,6 +18,43 @@ class GroupsController extends Controller
         //
     }
 
+    /**
+     * @apiGroup            Groups
+     * @apiName             GetAllGroups
+     * @apiDescription      Get a list of all groups.
+     * @api                 {get} /groups Get all groups
+     * @apiSuccess          (200) {array} message List of groups.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+     *                              [
+                                        {
+                                            "id": 1,
+                                            "user_id": 1,
+                                            "name": "My PHP Tutorials",
+                                            "tag": "php",
+                                            "created_at": null,
+                                            "updated_at": null
+                                        },
+                                        {
+                                            "id": 2,
+                                            "user_id": 1,
+                                            "name": "Useful JavaScript Code Snippets",
+                                            "tag": "javascript",
+                                            "created_at": null,
+                                            "updated_at": null
+                                        },
+                                        {
+                                            "id": 3,
+                                            "user_id": 2,
+                                            "name": "Miscellaneous Tutorials",
+                                            "tag": "cpp",
+                                            "created_at": null,
+                                            "updated_at": null
+                                        }
+                                    ]
+
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function all(Request $request)
     {
         if (count($request->query()) > 0) {
@@ -29,11 +66,49 @@ class GroupsController extends Controller
         return Group::all();
     }
 
-    public function get($identifier)
+    /**
+     * @apiGroup            Groups
+     * @apiName             GetGroup
+     * @apiDescription      Get a group by ID.
+     * @api                 {get} /groups/:id Get a group
+     * @apiParam            {number} id ID of the group.
+     * @apiSuccess          (200) {json} message Group object.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                {
+                                    "id": 1,
+                                    "user_id": 1,
+                                    "name": "My PHP Tutorials",
+                                    "tag": "php",
+                                    "created_at": null,
+                                    "updated_at": null
+                                }
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function get($id)
     {
-        return Group::findOrFail($identifier);
+        return Group::findOrFail($id);
     }
 
+    /**
+     * @apiGroup            Groups
+     * @apiName             CreateGroup
+     * @apiDescription      Create a group.
+     * @api                 {post} /groups Create a group
+     * @apiParam            {string} name Name of the group.
+     * @apiParam            {string} tag Tag of the group.
+     * @apiSuccess          (201) {json} message Success message
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 201 Created
+                                {
+                                    "message": "The group has been created."
+                                }
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function post(Request $request)
     {
         try {
@@ -50,6 +125,21 @@ class GroupsController extends Controller
         }
     }
 
+    /**
+     * @apiGroup            Groups
+     * @apiName             DeleteGroup
+     * @apiDescription      Delete a group.
+     * @api                 {delete} /groups/:id Delete a group
+     * @apiParam            {number} id ID of the group.
+     * @apiSuccess          (200) {json} message Success message
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 20 OK
+                                {
+                                    "message": "The group has been deleted."
+                                }
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete($id)
     {
         try {
