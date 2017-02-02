@@ -308,7 +308,9 @@ class MediaController extends Controller
 
             if ($request->hasFile('file')) {
 
-                $this->generateThumbnails($request->file('file'), $medium->file_name);
+                if ($medium->media_type === 'image') {
+                    $this->generateThumbnails($request->file('file'), $medium->file_name);
+                }
 
                 $request->file('file')->move(storage_path() . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR .
                     'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'original', $medium->file_name);
