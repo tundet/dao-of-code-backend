@@ -292,8 +292,8 @@ class MediaController extends Controller
     public function post(Request $request)
     {
         try {
-
             $nextMediumId = (int) Medium::all()->last()->value('id') + 1;
+
             $medium = new Medium();
 
             $medium->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
