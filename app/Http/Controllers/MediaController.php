@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Medium;
 use App\User;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class MediaController extends Controller
 {
@@ -291,11 +292,13 @@ class MediaController extends Controller
     public function post(Request $request)
     {
         try {
+
+            $nextMediumId = (int) Medium::all()->last()->value('id') + 1;
             $medium = new Medium();
 
             $medium->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
             $medium->group_id = $request->input('group_id');
-            $medium->file_name = (int)(Medium::all()->last()->value('id') + 1) . '.' . $request->file('file')->guessExtension();
+            $medium->file_name = $nextMediumId . '.' . $request->file('file')->guessExtension();
             $medium->title = $request->input('title');
             $medium->description = $request->input('description');
             $medium->tag = $request->input('tag');
@@ -304,8 +307,11 @@ class MediaController extends Controller
             $medium->group_priority = $request->input('group_priority');
 
             if ($request->hasFile('file')) {
+
+                $this->generateThumbnails($request->file('file'), $medium->file_name);
+
                 $request->file('file')->move(storage_path() . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR .
-                    'public' . DIRECTORY_SEPARATOR . $medium->user_id, $medium->file_name);
+                    'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'original', $medium->file_name);
             }
 
             $medium->save();
@@ -339,6 +345,30 @@ class MediaController extends Controller
             return response()->json(['message' => 'The medium has been deleted.'], 201);
         } catch (\Exception $ex) {
             return response()->json(['message' => 'Unable to delete the selected medium.'], 500);
+        }
+    }
+
+    protected function generateThumbnails($file, $fileName)
+    {
+        $uploadsDirectory = storage_path() . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'public'
+            . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
+
+
+        $image = Image::make($file);
+
+        if ($image->width() >= 360) {
+            $image->resize(480, 360);
+            $image->save($uploadsDirectory . 'small' . DIRECTORY_SEPARATOR . $fileName);
+        }
+
+        if ($image->width() >= 480) {
+            $image->resize(640, 480);
+            $image->save($uploadsDirectory . 'medium' . DIRECTORY_SEPARATOR . $fileName);
+        }
+
+        if ($image->width() >= 720) {
+            $image->resize(960, 720);
+            $image->save($uploadsDirectory . 'large' . DIRECTORY_SEPARATOR . $fileName);
         }
     }
 }
