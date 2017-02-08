@@ -15,32 +15,32 @@ class MediaTableSeeder extends Seeder
     {
         DB::table('media')->insert([
             'user_id'       => 1,
-            'file_name'     => 'test1.jpg',
+            'file_name'     => '2.gif',
             'title'         => 'Test Image 1',
             'description'   => 'This is the first test image.',
             'tag'           => 'cpp',
             'media_type'    => 'image',
-            'mime_type'     => 'image/jpeg'
+            'mime_type'     => 'image/gif'
         ]);
 
         DB::table('media')->insert([
             'user_id'       => 2,
-            'file_name'     => 'test2.jpg',
+            'file_name'     => '2.gif',
             'title'         => 'Test Image 2',
             'description'   => 'This is the second test image.',
             'tag'           => 'cpp',
             'media_type'    => 'image',
-            'mime_type'     => 'image/jpeg'
+            'mime_type'     => 'image/gif'
         ]);
 
         DB::table('media')->insert([
             'user_id'       => 3,
-            'file_name'     => 'test3.jpg',
+            'file_name'     => '3.gif',
             'title'         => 'Test Image 3',
             'description'   => 'This is the third test image.',
             'tag'           => 'php',
             'media_type'    => 'image',
-            'mime_type'     => 'image/jpeg'
+            'mime_type'     => 'image/gif'
         ]);
     }
 }
