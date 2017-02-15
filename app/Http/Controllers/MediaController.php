@@ -294,11 +294,14 @@ class MediaController extends Controller
         try {
             $nextMediumId = (int) Medium::all()->last()->value('id') + 1;
 
+            $fileNameParts = explode('.', $request->file('file')->getFilename());
+            $fileExtension = end($fileNameParts);
+
             $medium = new Medium();
 
             $medium->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
             $medium->group_id = $request->input('group_id');
-            $medium->file_name = $nextMediumId . '.' . end(explode('.', $request->file('file')->getFilename()));
+            $medium->file_name = $nextMediumId . '.' . $fileExtension;
             $medium->title = $request->input('title');
             $medium->description = $request->input('description');
             $medium->tag = $request->input('tag');
