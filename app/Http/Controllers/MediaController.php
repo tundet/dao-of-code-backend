@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Medium;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class MediaController extends Controller
@@ -292,9 +293,9 @@ class MediaController extends Controller
     public function post(Request $request)
     {
         try {
-            $nextMediumId = (int) Medium::all()->last()->value('id') + 1;
+            $nextMediumId = DB::table('media')->max('id') + 1;;
 
-            $fileNameParts = explode('.', $request->file('file')->getFilename());
+            $fileNameParts = explode('.', $_FILES['file']['name']);
             $fileExtension = end($fileNameParts);
 
             $medium = new Medium();
