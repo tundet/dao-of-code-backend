@@ -361,15 +361,21 @@ class MediaController extends Controller
         if ($image->width() >= 360) {
             $image->resize(480, 360);
             $image->save($uploadsDirectory . 'small' . DIRECTORY_SEPARATOR . $fileName);
+        } else {
+            $image->save($uploadsDirectory . 'small' . DIRECTORY_SEPARATOR . $fileName);
         }
 
         if ($image->width() >= 480) {
             $image->resize(640, 480);
             $image->save($uploadsDirectory . 'medium' . DIRECTORY_SEPARATOR . $fileName);
+        } else {
+            $image->save($uploadsDirectory . 'medium' . DIRECTORY_SEPARATOR . $fileName);
         }
 
         if ($image->width() >= 720) {
             $image->resize(960, 720);
+            $image->save($uploadsDirectory . 'large' . DIRECTORY_SEPARATOR . $fileName);
+        } else {
             $image->save($uploadsDirectory . 'large' . DIRECTORY_SEPARATOR . $fileName);
         }
     }
