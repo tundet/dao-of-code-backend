@@ -279,7 +279,7 @@ class MediaController extends Controller
      * @apiParam            {string} media_type Type of the medium ("text", "audio", "image", "video" or "youtube").
      * @apiParam            {string} mime_type (Optional) MIME type of the medium.
      * @apiParam            {number} group_priority (Optional) Display priority in media groups. Higher is shown first.
-     * @apiParam            {number} youtube_url (Optional) YouTube URL. Can be used instead of uploading a file.
+     * @apiParam            {string} youtube_url (Optional) YouTube embed URL. Can be used instead of uploading a file.
      * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
@@ -295,22 +295,23 @@ class MediaController extends Controller
         try {
             $nextMediumId = DB::table('media')->max('id') + 1;;
 
-            $fileNameParts = explode('.', $_FILES['file']['name']);
-            $fileExtension = end($fileNameParts);
-
             $medium = new Medium();
 
             $medium->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
             $medium->group_id = $request->input('group_id');
-            $medium->file_name = $nextMediumId . '.' . $fileExtension;
             $medium->title = $request->input('title');
             $medium->description = $request->input('description');
             $medium->tag = $request->input('tag');
             $medium->media_type = $request->input('media_type');
             $medium->mime_type = $request->input('mime_type');
             $medium->group_priority = $request->input('group_priority');
+            $medium->youtube_url = $request->input('youtube_url');
 
             if ($request->hasFile('file')) {
+                $fileNameParts = explode('.', $_FILES['file']['name']);
+                $fileExtension = end($fileNameParts);
+
+                $medium->file_name = $nextMediumId . '.' . $fileExtension;
 
                 if ($medium->media_type === 'image') {
                     $this->generateThumbnails($request->file('file'), $medium->file_name);
