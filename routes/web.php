@@ -57,6 +57,7 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
      * Group routes.
      */
     $app->get('groups', 'GroupsController@all');
+    $app->get('groups/latest/{tag}', 'GroupsController@getLatestGroupsByTag');
     $app->get('groups/{id}', 'GroupsController@get');
     $app->post('groups', 'GroupsController@post');
     $app->delete('groups/{id}', 'GroupsController@delete');

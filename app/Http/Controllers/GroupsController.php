@@ -93,6 +93,35 @@ class GroupsController extends Controller
     }
 
     /**
+     * @apiGroup            Media
+     * @apiName             GetLatestGroupsByTag
+     * @apiDescription      Get the latest groups by tag.
+     * @api                 {get} /groups/latest/:tag Get the latest groups by tag
+     * @apiParam            {number} amount Amount of groups to get.
+     * @apiParam            {string} tag Tag of the groups to get.
+     * @apiSuccess          (200) {array} message List of groups.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                    "id": 1,
+                                    "user_id": 1,
+                                    "name": "My PHP Tutorials",
+                                    "tag": "php",
+                                    "created_at": null,
+                                    "updated_at": null
+                                    }
+                                ]
+     *
+     * @return mixed
+     */
+    public function getLatestGroupsByTag($tag)
+    {
+        return Group::where('tag', $tag)->orderBy('id', 'desc')->take(10)->get();
+
+    }
+
+    /**
      * @apiGroup            Groups
      * @apiName             CreateGroup
      * @apiDescription      Create a group.
