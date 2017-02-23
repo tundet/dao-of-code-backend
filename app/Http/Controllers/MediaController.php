@@ -155,6 +155,54 @@ class MediaController extends Controller
 
     /**
      * @apiGroup            Media
+     * @apiName             GetLatestUngroupedMedia
+     * @apiDescription      Get the latest ungrouped media.
+     * @api                 {get} /media/latest/ungrouped/:amount Get the latest ungrouped media
+     * @apiParam            {number} amount Amount of ungrouped media to get.
+     * @apiSuccess          (200) {array} message List of ungrouped media.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                        "id": 3,
+                                        "user_id": 3,
+                                        "group_id": null,
+                                        "file_name": "test3.jpg",
+                                        "title": "Test Image 3",
+                                        "description": "This is the third test image.",
+                                        "tag": "php",
+                                        "media_type": "image",
+                                        "mime_type": "image/jpeg",
+                                        "group_priority": null,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    },
+                                    {
+                                        "id": 2,
+                                        "user_id": 2,
+                                        "group_id": null,
+                                        "file_name": "test2.jpg",
+                                        "title": "Test Image 2",
+                                        "description": "This is the second test image.",
+                                        "tag": "cpp",
+                                        "media_type": "image",
+                                        "mime_type": "image/jpeg",
+                                        "group_priority": null,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $amount
+     * @return mixed
+     */
+    public function getLatestUngrouped($amount)
+    {
+        return Medium::where('group_id', null)->orderBy('id', 'desc')->take($amount)->get();
+    }
+
+    /**
+     * @apiGroup            Media
      * @apiName             GetMediumComments
      * @apiDescription      Get comments of a medium by ID.
      * @api                 {get} /media/:id/comments Get comments of a medium
