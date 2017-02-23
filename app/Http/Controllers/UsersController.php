@@ -173,6 +173,33 @@ class UsersController extends Controller
      * @param $identifier
      * @return mixed
      */
+    public function getFavorites($identifier)
+    {
+        return $this->getUserInstance($identifier)->favorites;
+    }
+
+    /**
+     * @apiGroup            Users
+     * @apiName             GetFavoritesOfUser
+     * @apiDescription      Get a list of favorites of a user.
+     * @api                 {get} /users/:identifier/favorites Get favorites of a user
+     * @apiParam            {string} identifier User ID or username.
+     * @apiSuccess          (200) {array} message List of favorites.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                    "id": 1,
+                                    "user_id": 1,
+                                    "medium_id": 2,
+                                    "created_at": null,
+                                    "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $identifier
+     * @return mixed
+     */
     public function getComments($identifier)
     {
         return $this->getUserInstance($identifier)->comments;
