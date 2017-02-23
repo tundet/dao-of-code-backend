@@ -84,7 +84,7 @@ class CommentsController extends Controller
      * @apiDescription      Create a comment.
      * @api                 {post} /comments Create a comment
      * @apiParam            {number} medium_id ID of the medium the comment belongs to.
-     * @apiParam            {string} Comment Contents of the comment.
+     * @apiParam            {string} comment Contents of the comment.
      * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
