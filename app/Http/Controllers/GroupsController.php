@@ -94,6 +94,58 @@ class GroupsController extends Controller
 
     /**
      * @apiGroup            Groups
+     * @apiName             GetMediaOfGroup
+     * @apiDescription      Get media of a group
+     * @api                 {get} /groups/:id/media Get a media of a group
+     * @apiParam            {number} id ID of the group.
+     * @apiSuccess          (200) {array} message List of media.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                        "id": 1,
+                                        "user_id": 1,
+                                        "group_id": 1,
+                                        "file_name": "2.gif",
+                                        "title": "Test Image 1",
+                                        "description": "This is the first test image.",
+                                        "tag": "cpp",
+                                        "media_type": "image",
+                                        "mime_type": "image/gif",
+                                        "group_priority": null,
+                                        "youtube_url": null,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    },
+                                    {
+                                        "id": 2,
+                                        "user_id": 2,
+                                        "group_id": 1,
+                                        "file_name": "2.gif",
+                                        "title": "Test Image 2",
+                                        "description": "This is the second test image.",
+                                        "tag": "cpp",
+                                        "media_type": "image",
+                                        "mime_type": "image/gif",
+                                        "group_priority": null,
+                                        "youtube_url": null,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getMedia($id)
+    {
+        $group = Group::findOrFail($id);
+
+        return $group->media;
+    }
+
+    /**
+     * @apiGroup            Groups
      * @apiName             GetLatestGroupsByTag
      * @apiDescription      Get the latest groups by tag.
      * @api                 {get} /groups/latest/:tag Get the latest groups by tag
