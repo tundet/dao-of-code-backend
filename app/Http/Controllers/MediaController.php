@@ -386,6 +386,7 @@ class MediaController extends Controller
      * @apiParam            {string} title (Optional) Title of the medium.
      * @apiParam            {string} description (Optional) Description of the medium.
      * @apiParam            {string} tag (Optional) A tag assigned to the medium. Used to categorize media.
+     * @apiParam            {number} group_priority (Optional) Display priority in media groups. Higher is shown first.
      * @apiSuccess          (200) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 200 OK
@@ -421,6 +422,11 @@ class MediaController extends Controller
 
             if ($request->has('tag')) {
                 $medium->tag = $request->input('tag');
+                $mediumHasChanged = true;
+            }
+
+            if ($request->has('group_priority')) {
+                $medium->group_priority = $request->input('group_priority');
                 $mediumHasChanged = true;
             }
 
