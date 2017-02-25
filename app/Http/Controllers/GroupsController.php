@@ -93,7 +93,7 @@ class GroupsController extends Controller
     }
 
     /**
-     * @apiGroup            Media
+     * @apiGroup            Groups
      * @apiName             GetLatestGroupsByTag
      * @apiDescription      Get the latest groups by tag.
      * @api                 {get} /groups/latest/:tag Get the latest groups by tag
