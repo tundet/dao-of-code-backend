@@ -49,6 +49,7 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('media/{id}/comments/latest/{amount}', 'MediaController@getLatestComments');
     $app->post('media', 'MediaController@post');
     $app->delete('media/{id}', 'MediaController@delete');
+    $app->patch('media/{id}', 'MediaController@patch');
     $app->get('media/{id}/comments', 'MediaController@getComments');
     $app->get('media/{id}/favorites', 'MediaController@getFavorites');
     $app->get('media/{id}/likes', 'MediaController@getLikes');

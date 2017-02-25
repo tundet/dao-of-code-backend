@@ -379,6 +379,63 @@ class MediaController extends Controller
 
     /**
      * @apiGroup            Media
+     * @apiName             UpdateMedium
+     * @apiDescription      Update a medium.
+     * @api                 {patch} /media/:id Update a medium
+     * @apiParam            {number} group_id (Optional) ID of the group the medium belongs to.
+     * @apiParam            {string} title (Optional) Title of the medium.
+     * @apiParam            {string} description (Optional) Description of the medium.
+     * @apiParam            {string} tag (Optional) A tag assigned to the medium. Used to categorize media.
+     * @apiSuccess          (200) {json} message Success message
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                {
+                                    "message": "Medium test1 has been updated."
+                                }
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function patch(Request $request, $id)
+    {
+        try {
+            $medium = Medium::findOrFail($id);
+
+            $mediumHasChanged = false;
+
+            if ($request->has('group_id')) {
+                $medium->group_id = $request->input('group_id');
+                $mediumHasChanged = true;
+            }
+
+            if ($request->has('title')) {
+                $medium->title = $request->input('title');
+                $mediumHasChanged = true;
+            }
+
+            if ($request->has('description')) {
+                $medium->description = $request->input('description');
+                $mediumHasChanged = true;
+            }
+
+            if ($request->has('tag')) {
+                $medium->tag = $request->input('tag');
+                $mediumHasChanged = true;
+            }
+
+            if ($mediumHasChanged) {
+                $medium->save();
+            }
+
+            return response()->json(['message' => 'Medium ' . $medium->title . ' has been updated.'], 201);
+        } catch (\Exception $ex) {
+            return response()->json(['message' => 'Unable to update medium.' . $ex->getMessage()], 500);
+        }
+    }
+
+    /**
+     * @apiGroup            Media
      * @apiName             DeleteMedium
      * @apiDescription      Delete a medium.
      * @api                 {delete} /media/:id Delete a medium
