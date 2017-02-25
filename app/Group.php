@@ -29,4 +29,12 @@ class Group extends Model implements AuthenticatableContract, AuthorizableContra
     protected $hidden = [
 
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function media()
+    {
+        return $this->hasMany('App\Medium');
+    }
 }
