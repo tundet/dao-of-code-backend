@@ -106,7 +106,7 @@ class LikesController extends Controller
 
             $like->save();
 
-            return response()->json(['message' => 'The like has been created.'], 201);
+            return response()->json(['message' => 'The like has been created.', 'id' => $like->id], 201);
         } catch (\Exception $ex) {
             return response()->json(['message' => 'Unable to create a new like.'], 500);
         }
