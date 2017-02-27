@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Favorite;
 use App\Like;
 use App\User;
 use Illuminate\Http\Request;
@@ -131,7 +130,7 @@ class LikesController extends Controller
     public function delete($id)
     {
         try {
-            Favorite::find($id)->delete();
+            Like::find($id)->delete();
 
             return response()->json(['message' => 'The like has been deleted.'], 201);
         } catch (\Exception $ex) {
