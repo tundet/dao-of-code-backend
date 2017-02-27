@@ -84,7 +84,6 @@ class LikesController extends Controller
      * @apiName             CreateLike
      * @apiDescription      Create a like.
      * @api                 {post} /likes Create a like
-     * @apiParam            {number} user_id ID of the user the like belongs to.
      * @apiParam            {number} medium_id ID of the medium the like belongs to.
      * @apiParam            {number} like 1 if like, 0 if dislike.
      * @apiSuccess          (201) {json} message Success message
