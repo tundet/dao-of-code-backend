@@ -20,6 +20,7 @@ class AuthController extends Controller
      *                          HTTP/1.1 200 OK
      *                              {
      *                                  "message": "You have been signed in.",
+     *                                  "id": 1,
      *                                  "api_token": "3fb75d3744bebfe78965c5a9e82963832c3ad4744dc03e9188c5c982d85978ef179324162d7e2e088963409036fb4a460ef7c05f6e828b80b384f0b246fde5dff31ee7451ac83eeb9b891d4e973c918162c2aedceeaaab80399f0c137c31f8e56cb9b2456561208c6f479cb2a11bbacad1e9b80b645ae6edfdd32b9eab27a08b"
      *                              }
      * @apiError            (401) {string} message Error message.
@@ -44,7 +45,8 @@ class AuthController extends Controller
         // If signin is successful.
         if (password_verify($request->input('password'), $user->password)) {
             $response = [
-                'message' => 'You have been signed in.',
+                'message'   => 'You have been signed in.',
+                'id'        => $user->id,
                 'api_token' => bin2hex(openssl_random_pseudo_bytes(128))
             ];
 
