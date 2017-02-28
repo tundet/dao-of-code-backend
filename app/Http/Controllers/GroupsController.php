@@ -219,7 +219,7 @@ class GroupsController extends Controller
     }
 
     /**
-     * @apiGroup            Group
+     * @apiGroup            Groups
      * @apiName             UpdateGroup
      * @apiDescription      Update a group.
      * @api                 {patch} /group/:id Update a group
