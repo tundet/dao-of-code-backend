@@ -219,6 +219,57 @@ class GroupsController extends Controller
     }
 
     /**
+     * @apiGroup            Group
+     * @apiName             UpdateGroup
+     * @apiDescription      Update a group.
+     * @api                 {patch} /group/:id Update a group
+     * @apiParam            {string} name (Optional) Name of the group.
+     * @apiParam            {string} description (Optional) Description of the group.
+     * @apiParam            {string} tag (Optional) Tag of the group.
+     * @apiSuccess          (200) {json} message Success message
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                {
+                                    "message": "Group group1 has been updated."
+                                }
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function patch(Request $request, $id)
+    {
+        try {
+            $group = Group::findOrFail($id);
+
+            $groupHasChanged = false;
+
+            if ($request->has('name')) {
+                $group->name = $request->input('name');
+                $groupHasChanged = true;
+            }
+
+            if ($request->has('description')) {
+                $group->description = $request->input('description');
+                $groupHasChanged = true;
+            }
+
+            if ($request->has('tag')) {
+                $group->tag = $request->input('tag');
+                $groupHasChanged = true;
+            }
+
+            if ($groupHasChanged) {
+                $group->save();
+            }
+
+            return response()->json(['message' => 'Group ' . $group->name . ' has been updated.'], 201);
+        } catch (\Exception $ex) {
+            return response()->json(['message' => 'Unable to update group.' . $ex->getMessage()], 500);
+        }
+    }
+
+    /**
      * @apiGroup            Groups
      * @apiName             DeleteGroup
      * @apiDescription      Delete a group.
