@@ -410,6 +410,7 @@ class MediaController extends Controller
 
             if ($request->has('group_id')) {
                 $medium->group_id = $request->input('group_id');
+                $medium->group_priority = DB::table('media')->where('group_id', $request->input('group_id'))->max('group_priority') + 1;
                 $mediumHasChanged = true;
             }
 
