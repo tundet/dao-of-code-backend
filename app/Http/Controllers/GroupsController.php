@@ -31,6 +31,7 @@ class GroupsController extends Controller
                                             "id": 1,
                                             "user_id": 1,
                                             "name": "My PHP Tutorials",
+                                            "description": "Description for My PHP Tutorials"
                                             "tag": "php",
                                             "created_at": null,
                                             "updated_at": null
@@ -39,6 +40,7 @@ class GroupsController extends Controller
                                             "id": 2,
                                             "user_id": 1,
                                             "name": "Useful JavaScript Code Snippets",
+                                            "description": "Description for Useful JavaScript Code Snippets",
                                             "tag": "javascript",
                                             "created_at": null,
                                             "updated_at": null
@@ -47,6 +49,7 @@ class GroupsController extends Controller
                                             "id": 3,
                                             "user_id": 2,
                                             "name": "Miscellaneous Tutorials",
+                                            "description": "Description for Miscellaneous Tutorials",
                                             "tag": "cpp",
                                             "created_at": null,
                                             "updated_at": null
@@ -79,6 +82,7 @@ class GroupsController extends Controller
                                     "id": 1,
                                     "user_id": 1,
                                     "name": "My PHP Tutorials",
+                                    "description": "Description for My PHP Tutorials",
                                     "tag": "php",
                                     "created_at": null,
                                     "updated_at": null
