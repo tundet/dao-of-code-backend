@@ -341,7 +341,7 @@ class MediaController extends Controller
     public function post(Request $request)
     {
         try {
-            $nextMediumId = DB::table('media')->max('id') + 1;;
+            $nextMediumId = DB::table('media')->max('id') + 1;
 
             $medium = new Medium();
 
@@ -352,8 +352,11 @@ class MediaController extends Controller
             $medium->tag = $request->input('tag');
             $medium->media_type = $request->input('media_type');
             $medium->mime_type = $request->input('mime_type');
-            $medium->group_priority = $request->input('group_priority');
             $medium->youtube_url = $request->input('youtube_url');
+
+            if ($request->has('group_id')) {
+                $medium->group_priority = DB::table('media')->where('group_id', $request->input('group_id'))->max('group_priority') + 1;
+            }
 
             if ($request->hasFile('file')) {
                 $fileNameParts = explode('.', $_FILES['file']['name']);

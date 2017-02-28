@@ -141,7 +141,7 @@ class GroupsController extends Controller
     {
         $group = Group::findOrFail($id);
 
-        return $group->media;
+        return $group->media()->orderBy('group_priority', 'asc')->get();
     }
 
     /**
@@ -179,6 +179,7 @@ class GroupsController extends Controller
      * @apiDescription      Create a group.
      * @api                 {post} /groups Create a group
      * @apiParam            {string} name Name of the group.
+     * @apiParam            {string} description Description of the group.
      * @apiParam            {string} tag Tag of the group.
      * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
@@ -198,6 +199,7 @@ class GroupsController extends Controller
 
             $group->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
             $group->name = $request->input('name');
+            $group->description = $request->input('description');
             $group->tag = $request->input('tag');
             $group->save();
 
