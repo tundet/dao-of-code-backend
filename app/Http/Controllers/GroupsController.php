@@ -256,6 +256,12 @@ class GroupsController extends Controller
 
             if ($request->has('tag')) {
                 $group->tag = $request->input('tag');
+
+                foreach ($group->media as $medium) {
+                    $medium->tag = $group->tag;
+                    $medium->save();
+                }
+
                 $groupHasChanged = true;
             }
 
