@@ -30,7 +30,7 @@ class GroupsTableSeeder extends Seeder
         DB::table('groups')->insert([
             'user_id'  => 3,
             'name'     => 'Miscellaneous Tutorials',
-            'description' => 'Description for "Miscellaneous Tutorials',
+            'description' => 'Description for Miscellaneous Tutorials',
             'tag'  => 'cpp'
         ]);
     }
