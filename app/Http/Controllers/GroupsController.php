@@ -287,7 +287,15 @@ class GroupsController extends Controller
     public function delete($id)
     {
         try {
-            Group::find($id)->delete();
+            $group = Group::find($id);
+
+            foreach ($group->media as $medium) {
+                $medium->group_id = null;
+                $medium->group_priority = null;
+                $medium->save();
+            }
+
+            $group->delete();
 
             return response()->json(['message' => 'The group has been deleted.'], 201);
         } catch (\Exception $ex) {
