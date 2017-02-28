@@ -21,14 +21,14 @@ class GroupsTableSeeder extends Seeder
         ]);
 
         DB::table('groups')->insert([
-            'user_id'   => 1,
+            'user_id'   => 2,
             'name'      => 'Useful JavaScript Code Snippets',
             'description' => 'Description for Useful JavaScript Code Snippets',
             'tag'       => 'javascript'
         ]);
 
         DB::table('groups')->insert([
-            'user_id'  => 2,
+            'user_id'  => 3,
             'name'     => 'Miscellaneous Tutorials',
             'description' => 'Description for "Miscellaneous Tutorials',
             'tag'  => 'cpp'
