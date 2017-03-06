@@ -152,7 +152,7 @@ class GroupsController extends Controller
      * @apiGroup            Groups
      * @apiName             GetLatestGroupsByTag
      * @apiDescription      Get the latest groups by tag.
-     * @api                 {get} /groups/latest/:tag Get the latest groups by tag
+     * @api                 {get} /groups/latest/:tag/:amount Get the latest groups by tag
      * @apiParam            {number} amount Amount of groups to get.
      * @apiParam            {string} tag Tag of the groups to get.
      * @apiSuccess          (200) {array} message List of groups.
@@ -169,11 +169,12 @@ class GroupsController extends Controller
                                     }
                                 ]
      *
+     * @param $amount
      * @return mixed
      */
-    public function getLatestGroupsByTag($tag)
+    public function getLatestGroupsByTag($tag, $amount)
     {
-        return Group::where('tag', $tag)->orderBy('id', 'desc')->take(10)->get();
+        return Group::where('tag', $tag)->orderBy('id', 'desc')->take($amount)->get();
 
     }
 
