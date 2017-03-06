@@ -155,10 +155,10 @@ class MediaController extends Controller
 
     /**
      * @apiGroup            Media
-     * @apiName             GetLatestUngroupedMedia
-     * @apiDescription      Get the latest ungrouped media.
-     * @api                 {get} /media/latest/ungrouped/:amount Get the latest ungrouped media
-     * @apiParam            {number} amount Amount of ungrouped media to get.
+     * @apiName             GetLatestUngroupedMediaByTag
+     * @apiDescription      Get the latest ungrouped media by tag.
+     * @api                 {get} /media/latest/ungrouped/:tag/:amount Get the latest ungrouped media by tag
+     * @apiParam            {number} amount Amount of media to get.
      * @apiSuccess          (200) {array} message List of ungrouped media.
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 200 OK
@@ -193,12 +193,13 @@ class MediaController extends Controller
                                     }
                                 ]
      *
+     * @param $tag
      * @param $amount
      * @return mixed
      */
-    public function getLatestUngrouped($amount)
+    public function getLatestUngroupedMediaByTag($tag, $amount)
     {
-        return Medium::where('group_id', null)->orderBy('id', 'desc')->take($amount)->get();
+        return Medium::where('group_id', null)->where('tag', $tag)->orderBy('id', 'desc')->take($amount)->get();
     }
 
     /**
