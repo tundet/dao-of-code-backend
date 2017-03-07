@@ -86,7 +86,8 @@ class FavoritesController extends Controller
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
                                 {
-                                    "message": "The favorite has been created."
+                                    "message": "The favorite has been created.",
+                                    "id": 1
                                 }
      *
      * @param Request $request
@@ -102,7 +103,7 @@ class FavoritesController extends Controller
 
             $favorite->save();
 
-            return response()->json(['message' => 'The favorite has been created.'], 201);
+            return response()->json(['message' => 'The favorite has been created.', 'id' => $favorite->id], 201);
         } catch (\Exception $ex) {
             return response()->json(['message' => 'Unable to create a new favorite.'], 500);
         }
