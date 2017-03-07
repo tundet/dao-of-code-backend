@@ -152,23 +152,22 @@ class UsersController extends Controller
 
     /**
      * @apiGroup            Users
-     * @apiName             GetCommentsOfUser
-     * @apiDescription      Get a list of comments posted by a user.
-     * @api                 {get} /users/:identifier/comments Get comments of a user
+     * @apiName             GetFavoritesOfUser
+     * @apiDescription      Get a list of favorites of a user.
+     * @api                 {get} /users/:identifier/favorites Get favorites of a user
      * @apiParam            {string} identifier User ID or username.
-     * @apiSuccess          (200) {array} message List of comments.
+     * @apiSuccess          (200) {array} message List of favorites.
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 200 OK
-                                    [
-                                        {
-                                            "id": 1,
-                                            "user_id": 1,
-                                            "medium_id": 2,
-                                            "comment": "The first comment.",
-                                            "created_at": null,
-                                            "updated_at": null
-                                        }
-                                    ]
+                                [
+                                    {
+                                        "id": 1,
+                                        "user_id": 1,
+                                        "medium_id": 2,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    }
+                                ]
      *
      * @param $identifier
      * @return mixed
@@ -180,20 +179,60 @@ class UsersController extends Controller
 
     /**
      * @apiGroup            Users
-     * @apiName             GetFavoritesOfUser
+     * @apiName             GetFavoritesOfUserByTag
      * @apiDescription      Get a list of favorites of a user.
-     * @api                 {get} /users/:identifier/favorites Get favorites of a user
+     * @api                 {get} /users/:identifier/favorites/:tag Get favorites of a user by tag
      * @apiParam            {string} identifier User ID or username.
+     * @apiParam            {string} tag Tag of the favorites.
      * @apiSuccess          (200) {array} message List of favorites.
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 200 OK
                                 [
                                     {
-                                    "id": 1,
-                                    "user_id": 1,
-                                    "medium_id": 2,
-                                    "created_at": null,
-                                    "updated_at": null
+                                        "id": 1,
+                                        "user_id": 1,
+                                        "medium_id": 2,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $identifier
+     * @param $tag
+     * @return mixed
+     */
+    public function getFavoritesByTag($identifier, $tag)
+    {
+        $allFavorites = $this->getUserInstance($identifier)->favorites;
+
+        $taggedFavorites = [];
+
+        foreach ($allFavorites as $favorite) {
+            if ($favorite->medium->tag === $tag) {
+                $taggedFavorites[] = $favorite;
+            }
+        }
+
+        return $taggedFavorites;
+    }
+
+    /**
+     * @apiGroup            Users
+     * @apiName             GetCommentsOfUser
+     * @apiDescription      Get a list of comments posted by a user.
+     * @api                 {get} /users/:identifier/comments Get comments of a user
+     * @apiParam            {string} identifier User ID or username.
+     * @apiSuccess          (200) {array} message List of comments.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                        "id": 1,
+                                        "user_id": 1,
+                                        "medium_id": 2,
+                                        "comment": "The first comment.",
+                                        "created_at": null,
+                                        "updated_at": null
                                     }
                                 ]
      *

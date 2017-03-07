@@ -34,6 +34,7 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('users/{id}/groups', 'UsersController@getGroups');
     $app->get('users/{id}/comments', 'UsersController@getComments');
     $app->get('users/{id}/favorites', 'UsersController@getFavorites');
+    $app->get('users/{identifier}/favorites/{tag}', 'UsersController@getFavoritesByTag');
 
     /**
      * Authentication routes.
