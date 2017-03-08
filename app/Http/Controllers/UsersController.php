@@ -298,7 +298,7 @@ class UsersController extends Controller
         try {
             $user = new User();
 
-            $user->username = $request->input('username');
+            $user->username = strtolower($request->input('username'));
             $user->password = Hash::make($request->input('password'));
             $user->email = $request->input('email');
 
