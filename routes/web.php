@@ -36,6 +36,8 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('users/{id}/favorites', 'UsersController@getFavorites');
     $app->get('users/{identifier}/favorites/{tag}', 'UsersController@getFavoritesByTag');
 
+    $app->post('get-usernames', 'UsersController@getUsernames');
+
     /**
      * Authentication routes.
      */

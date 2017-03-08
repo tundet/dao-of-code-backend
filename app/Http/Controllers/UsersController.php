@@ -90,6 +90,37 @@ class UsersController extends Controller
 
     /**
      * @apiGroup            Users
+     * @apiName             GetUsernames
+     * @apiDescription      Get a list of usernames matching use IDs.
+     * @api                 {get} /get-usernames Get a list of usernames
+     * @apiParam            {string} id[] One or more usernames.
+     * @apiSuccess          (200) {array} message List of usernames.
+     * @apiSuccessExample   {array} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    "user1",
+                                    "user2"
+                                ]
+     *
+     * @return mixed
+     */
+    public function getUsernames(Request $request)
+    {
+        $ids = $request->get('id');
+
+        $usernames = [];
+
+        foreach ($ids as $id) {
+            $username = User::where('id', $id)->value('username');
+
+            $usernames[] = $username;
+        }
+
+        return $usernames;
+    }
+
+    /**
+     * @apiGroup            Users
      * @apiName             GetMediaOfUser
      * @apiDescription      Get a list of media uploaded by a user.
      * @api                 {get} /users/:identifier Get media of a user
