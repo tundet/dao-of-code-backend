@@ -18,7 +18,7 @@ class Favorite extends Model implements AuthenticatableContract, AuthorizableCon
      * @var array
      */
     protected $fillable = [
-        'user_id', 'medium_id',
+        'user_id', 'medium_id', 'group_id'
     ];
 
     /**
