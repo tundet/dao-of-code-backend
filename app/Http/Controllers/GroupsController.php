@@ -181,6 +181,36 @@ class GroupsController extends Controller
 
     /**
      * @apiGroup            Groups
+     * @apiName             GetFavoritesOfGroup
+     * @apiDescription      Get favorites of a group
+     * @api                 {get} /groups/:id/favorites Get favorites of a group
+     * @apiParam            {number} id ID of the group.
+     * @apiSuccess          (200) {array} message List of favorites.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                    "id": 6,
+                                    "user_id": 3,
+                                    "medium_id": null,
+                                    "group_id": 1,
+                                    "created_at": null,
+                                    "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getFavorites($id)
+    {
+        $group = Group::findOrFail($id);
+
+        return $group->favorites;
+    }
+
+    /**
+     * @apiGroup            Groups
      * @apiName             GetLatestGroupsByTag
      * @apiDescription      Get the latest groups by tag.
      * @api                 {get} /groups/latest/:tag/:amount Get the latest groups by tag
