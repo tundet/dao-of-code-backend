@@ -150,6 +150,37 @@ class GroupsController extends Controller
 
     /**
      * @apiGroup            Groups
+     * @apiName             GetLikesOfGroup
+     * @apiDescription      Get likes of a group
+     * @api                 {get} /groups/:id/likes Get all likes of a group
+     * @apiParam            {number} id ID of the group.
+     * @apiSuccess          (200) {array} message List of likes.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+                                [
+                                    {
+                                        "id": 4,
+                                        "user_id": 1,
+                                        "medium_id": null,
+                                        "group_id": 2,
+                                        "like": 1,
+                                        "created_at": null,
+                                        "updated_at": null
+                                    }
+                                ]
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getLikes($id)
+    {
+        $group = Group::findOrFail($id);
+
+        return $group->likes;
+    }
+
+    /**
+     * @apiGroup            Groups
      * @apiName             GetLatestGroupsByTag
      * @apiDescription      Get the latest groups by tag.
      * @api                 {get} /groups/latest/:tag/:amount Get the latest groups by tag

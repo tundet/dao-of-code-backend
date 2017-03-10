@@ -65,6 +65,7 @@ $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('groups/latest/{tag}/{amount}', 'GroupsController@getLatestGroupsByTag');
     $app->get('groups/{id}', 'GroupsController@get');
     $app->get('groups/{id}/media', 'GroupsController@getMedia');
+    $app->get('groups/{id}/likes', 'GroupsController@getLikes');
     $app->post('groups', 'GroupsController@post');
     $app->patch('groups/{id}', 'GroupsController@patch');
     $app->delete('groups/{id}', 'GroupsController@delete');

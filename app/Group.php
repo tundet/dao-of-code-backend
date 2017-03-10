@@ -37,4 +37,12 @@ class Group extends Model implements AuthenticatableContract, AuthorizableContra
     {
         return $this->hasMany('App\Medium');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }
