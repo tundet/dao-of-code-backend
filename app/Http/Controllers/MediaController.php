@@ -24,6 +24,7 @@ class MediaController extends Controller
      * @apiGroup            Media
      * @apiName             GetAllMedia
      * @apiDescription      Get a list of all media.
+     *
      * Searching and filtering can be done using query parameters.
      *
      * The following field can be used for searching: title, tag, description, media_type.
