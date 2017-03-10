@@ -28,6 +28,9 @@ class MediaController extends Controller
      *
      * The following field can be used for searching: title, tag, description, media_type.
      *
+     * Searches are performed using wildcards, meaning searching for "Image" translates to "%Image%" and
+     * matches "Test Image 1", "Test Image 2" and so on.
+     *
      * Example of searching by one field: /media?tag=cpp
      *
      * Example of searching by multiple fields: /media?title=Image&tag=cpp
