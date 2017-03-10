@@ -31,6 +31,7 @@ class LikesController extends Controller
                                             "id": 1,
                                             "user_id": 1,
                                             "medium_id": 2,
+                                            "group_id": null,
                                             "like": 1,
                                             "created_at": null,
                                             "updated_at": null
@@ -38,7 +39,8 @@ class LikesController extends Controller
                                         {
                                             "id": 2,
                                             "user_id": 2,
-                                            "medium_id": 3,
+                                            "medium_id": null,
+                                            "group_id": 3,
                                             "like": 0,
                                             "created_at": null,
                                             "updated_at": null
@@ -65,6 +67,7 @@ class LikesController extends Controller
                                     "id": 1,
                                     "user_id": 1,
                                     "medium_id": 2,
+                                    "group_id": null,
                                     "like": 1,
                                     "created_at": null,
                                     "updated_at": null
@@ -83,7 +86,8 @@ class LikesController extends Controller
      * @apiName             CreateLike
      * @apiDescription      Create a like.
      * @api                 {post} /likes Create a like
-     * @apiParam            {number} medium_id ID of the medium the like belongs to.
+     * @apiParam            {number} medium_id (Optional) ID of the medium the like belongs to.
+     * @apiParam            {number} group_id (Optional) ID of the group the like belongs to.
      * @apiParam            {number} like 1 if like, 0 if dislike.
      * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
@@ -102,6 +106,7 @@ class LikesController extends Controller
 
             $like->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
             $like->medium_id = $request->input('medium_id');
+            $like->group_id = $request->input('group_id');
             $like->like = $request->input('like');
 
             $like->save();
