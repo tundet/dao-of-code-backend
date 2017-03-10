@@ -100,7 +100,7 @@ class GroupsController extends Controller
      * @apiGroup            Groups
      * @apiName             GetMediaOfGroup
      * @apiDescription      Get media of a group
-     * @api                 {get} /groups/:id/media Get all media of a group
+     * @api                 {get} /groups/:id/media Get media of a group
      * @apiParam            {number} id ID of the group.
      * @apiSuccess          (200) {array} message List of media.
      * @apiSuccessExample   {json} Success-Response:
@@ -152,7 +152,7 @@ class GroupsController extends Controller
      * @apiGroup            Groups
      * @apiName             GetLikesOfGroup
      * @apiDescription      Get likes of a group
-     * @api                 {get} /groups/:id/likes Get all likes of a group
+     * @api                 {get} /groups/:id/likes Get likes of a group
      * @apiParam            {number} id ID of the group.
      * @apiSuccess          (200) {array} message List of likes.
      * @apiSuccessExample   {json} Success-Response:
