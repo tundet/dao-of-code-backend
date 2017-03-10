@@ -81,7 +81,8 @@ class FavoritesController extends Controller
      * @apiDescription      Create a favorite.
      * @api                 {post} /favorites Create a favorite
      * @apiParam            {number} user_id ID of the user the favorite belongs to.
-     * @apiParam            {number} medium_id ID of the medium the favorite belongs to.
+     * @apiParam            {number} medium_id (Optional) ID of the medium the favorite belongs to.
+     * @apiParam            {number} group_id (Optional) ID of the group the favorite belongs to.
      * @apiSuccess          (201) {json} message Success message
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
@@ -100,6 +101,7 @@ class FavoritesController extends Controller
 
             $favorite->user_id = User::where('api_token', $request->header('x-access-token'))->value('id');
             $favorite->medium_id = $request->input('medium_id');
+            $favorite->group_id = $request->input('group_id');
 
             $favorite->save();
 
