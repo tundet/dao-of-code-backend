@@ -67,6 +67,7 @@ class MediaController extends Controller
             return Medium::where('title', 'LIKE', '%' . $request->query('title') . '%')
                 ->where('tag', 'LIKE', '%' . $request->query('tag') . '%')
                 ->where('description', 'LIKE', '%' . $request->query('description') . '%')
+                ->where('media_type', 'LIKE', '%' . $request->query('media_type') . '%')
                 ->get();
         }
 
