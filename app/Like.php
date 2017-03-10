@@ -18,7 +18,7 @@ class Like extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'user_id', 'medium_id', 'type',
+        'user_id', 'medium_id', 'group_id', 'type',
     ];
 
     /**

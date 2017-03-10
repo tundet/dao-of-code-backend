@@ -31,5 +31,23 @@ class LikesTableSeeder extends Seeder
             'medium_id'     => 1,
             'like'          => 1
         ]);
+
+        DB::table('likes')->insert([
+            'user_id'       => 1,
+            'group_id'      => 2,
+            'like'          => 1
+        ]);
+
+        DB::table('likes')->insert([
+            'user_id'       => 2,
+            'group_id'      => 3,
+            'like'          => 0
+        ]);
+
+        DB::table('likes')->insert([
+            'user_id'       => 3,
+            'group_id'      => 1,
+            'like'          => 1
+        ]);
     }
 }
