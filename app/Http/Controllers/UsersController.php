@@ -92,7 +92,7 @@ class UsersController extends Controller
      * @apiGroup            Users
      * @apiName             GetUsernames
      * @apiDescription      Get a list of usernames matching use IDs.
-     * @api                 {get} /get-usernames Get a list of usernames
+     * @api                 {post} /get-usernames Get a list of usernames
      * @apiParam            {string} id[] One or more usernames. Send the field multiple times to get multiple usernames.
      * @apiSuccess          (200) {array} message List of usernames.
      * @apiSuccessExample   {array} Success-Response:
