@@ -30,7 +30,7 @@ class MediaController extends Controller
      * The following field can be used for searching: title, tag, description, media_type.
      *
      * Searches are performed using wildcards, meaning searching for "Image" translates to "%Image%" and
-     * matches "Test Image 1", "Test Image 2" and so on.
+     * matches "Test Image 1", "Test Image 2" and so on. Tags don't use wildcards so tag requires a perfect match.
      *
      * Example of searching by one field: /media?tag=cpp
      *
@@ -76,7 +76,7 @@ class MediaController extends Controller
     {
         if (count($request->query()) > 0) {
             return Medium::where('title', 'LIKE', '%' . $request->query('title') . '%')
-                ->where('tag', 'LIKE', '%' . $request->query('tag') . '%')
+                ->where('tag', $request->query('tag'))
                 ->where('description', 'LIKE', '%' . $request->query('description') . '%')
                 ->where('media_type', 'LIKE', '%' . $request->query('media_type') . '%')
                 ->get();
