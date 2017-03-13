@@ -236,12 +236,20 @@ class UsersController extends Controller
      */
     public function getFavoritesByTag($identifier, $tag)
     {
-        $allFavorites = $this->getUserInstance($identifier)->favorites;
+        $favoriteMedia = $this->getUserInstance($identifier)->favorites()->where('group_id', null)->get();
 
         $taggedFavorites = [];
 
-        foreach ($allFavorites as $favorite) {
+        foreach ($favoriteMedia as $favorite) {
             if ($favorite->medium->tag === $tag) {
+                $taggedFavorites[] = $favorite;
+            }
+        }
+
+        $favoriteGroups = $this->getUserInstance($identifier)->favorites()->where('medium_id', null)->get();
+
+        foreach ($favoriteGroups as $favorite) {
+            if ($favorite->group->tag === $tag) {
                 $taggedFavorites[] = $favorite;
             }
         }

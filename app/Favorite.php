@@ -27,11 +27,16 @@ class Favorite extends Model implements AuthenticatableContract, AuthorizableCon
      * @var array
      */
     protected $hidden = [
-        'medium'
+        'medium', 'group'
     ];
 
     public function medium()
     {
         return $this->belongsTo('App\Medium');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo('App\Group');
     }
 }
