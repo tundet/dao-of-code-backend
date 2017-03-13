@@ -51,6 +51,8 @@ class MediaController extends Controller
                                             "media_type": "image",
                                             "mime_type": "image/jpeg",
                                             "group_priority": null,
+                                            "youtube_url": null,
+                                            "snippet_content": null,
                                             "created_at": null,
                                             "updated_at": null
                                         },
@@ -65,6 +67,8 @@ class MediaController extends Controller
                                             "media_type": "image",
                                             "mime_type": "image/jpeg",
                                             "group_priority": null,
+                                            "youtube_url": null,
+                                            "snippet_content": null,
                                             "created_at": null,
                                             "updated_at": null
                                         }
@@ -105,6 +109,8 @@ class MediaController extends Controller
                                     "media_type": "image",
                                     "mime_type": "image/jpeg",
                                     "group_priority": null,
+                                    "youtube_url": null,
+                                    "snippet_content": null,
                                     "created_at": null,
                                     "updated_at": null
                                 }
@@ -138,6 +144,8 @@ class MediaController extends Controller
                                         "media_type": "image",
                                         "mime_type": "image/jpeg",
                                         "group_priority": null,
+                                        "youtube_url": null,
+                                        "snippet_content": null,
                                         "created_at": null,
                                         "updated_at": null
                                     },
@@ -152,6 +160,7 @@ class MediaController extends Controller
                                         "media_type": "image",
                                         "mime_type": "image/jpeg",
                                         "group_priority": null,
+                                        "youtube_url": null,
                                         "created_at": null,
                                         "updated_at": null
                                     }
@@ -186,6 +195,8 @@ class MediaController extends Controller
                                         "media_type": "image",
                                         "mime_type": "image/jpeg",
                                         "group_priority": null,
+                                        "youtube_url": null,
+                                        "snippet_content": null,
                                         "created_at": null,
                                         "updated_at": null
                                     },
@@ -200,6 +211,8 @@ class MediaController extends Controller
                                         "media_type": "image",
                                         "mime_type": "image/jpeg",
                                         "group_priority": null,
+                                        "youtube_url": null,
+                                        "snippet_content": null,
                                         "created_at": null,
                                         "updated_at": null
                                     }
@@ -346,6 +359,7 @@ class MediaController extends Controller
      *                          HTTP/1.1 201 Created
                                 {
                                     "message": "The medium image1 has been created."
+     *                              "id": 1
                                 }
      *
      * @param Request $request
@@ -389,7 +403,7 @@ class MediaController extends Controller
 
             $medium->save();
 
-            return response()->json(['message' => 'Medium ' . $medium->title . ' has been created.'], 201);
+            return response()->json(['message' => 'Medium ' . $medium->title . ' has been created.', 'id' => $medium->id], 201);
         } catch (\Exception $ex) {
             return response()->json(['message' => 'Unable to create a new medium.' . $ex->getMessage()], 500);
         }
