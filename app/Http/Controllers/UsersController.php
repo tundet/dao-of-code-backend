@@ -140,6 +140,8 @@ class UsersController extends Controller
                                         "media_type": "image",
                                         "mime_type": "image/jpeg",
                                         "group_priority": null,
+                                        "youtube_url": null,
+                                        "snippet_content": null,
                                         "created_at": null,
                                         "updated_at": null
                                         }
