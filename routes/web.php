@@ -20,6 +20,7 @@ $app->get('/', function () use ($app) {
  */
 $app->post('signin', 'AuthController@signin');
 $app->post('users', 'UsersController@post');
+$app->post('validate', 'AuthController@validateToken');
 
 /**
  * User routes.

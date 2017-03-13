@@ -45,8 +45,8 @@ class AuthController extends Controller
         // If signin is successful.
         if (password_verify($request->input('password'), $user->password)) {
             $response = [
-                'message'   => 'You have been signed in.',
-                'id'        => $user->id,
+                'message' => 'You have been signed in.',
+                'id' => $user->id,
                 'api_token' => bin2hex(openssl_random_pseudo_bytes(128))
             ];
 
@@ -57,6 +57,33 @@ class AuthController extends Controller
         }
 
         return response()->json(['message' => $user->api_token], 401);
+    }
+
+    /**
+     * @apiGroup            Authentication
+     * @apiName             ValidateSessionToken
+     * @apiDescription      Validate a user's session token.
+     * @api                 {post} /validate Validate session token
+     * @apiParam            {number} user_id ID of the user.
+     * @apiParam            {string} username Username of the user.
+     * @apiSuccess          (200) {string} message Success message.
+     * @apiSuccessExample   {json} Success-Response:
+     *                          HTTP/1.1 200 OK
+     *                              {
+     *                                  "authenticated": true,
+     *                              }
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function validateToken(Request $request)
+    {
+        $result = User::where('id', $request->get('user_id'))
+            ->where('api_token', $request->header('x-access-token'))
+            ->where('username', $request->get('username'))
+            ->exists();
+
+        return response()->json(['authenticated' => $result], 200);
     }
 
     /**
