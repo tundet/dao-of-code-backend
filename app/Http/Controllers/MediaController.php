@@ -358,8 +358,8 @@ class MediaController extends Controller
      * @apiSuccessExample   {json} Success-Response:
      *                          HTTP/1.1 201 Created
                                 {
-                                    "message": "The medium image1 has been created."
-     *                              "id": 1
+                                    "message": "The medium image1 has been created.",
+                                    "id": 1
                                 }
      *
      * @param Request $request

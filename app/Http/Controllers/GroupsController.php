@@ -118,6 +118,7 @@ class GroupsController extends Controller
                                         "mime_type": "image/gif",
                                         "group_priority": null,
                                         "youtube_url": null,
+                                        "snippet_content": null,
                                         "created_at": null,
                                         "updated_at": null
                                     },
@@ -133,6 +134,7 @@ class GroupsController extends Controller
                                         "mime_type": "image/gif",
                                         "group_priority": null,
                                         "youtube_url": null,
+                                        "snippet_content": null,
                                         "created_at": null,
                                         "updated_at": null
                                     }
@@ -252,7 +254,7 @@ class GroupsController extends Controller
      *                          HTTP/1.1 201 Created
                                 {
                                     "message": "The group has been created.",
-     *                              "id" : "1"
+                                    "id" : "1"
                                 }
      *
      * @param Request $request
