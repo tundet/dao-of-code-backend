@@ -25,6 +25,7 @@ class CreateMediaTable extends Migration
             $table->string('mime_type')->nullable();
             $table->integer('group_priority')->nullable();
             $table->string('youtube_url')->nullable();
+            $table->text('snippet_content')->nullable();
             $table->timestamps();
         });
     }
